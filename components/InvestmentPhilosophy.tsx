@@ -59,6 +59,10 @@ export default function InvestmentPhilosophy() {
           })}
         </div>
       </div>
+            )
+    }
+    )
+    }
     </section>
   );
 }
