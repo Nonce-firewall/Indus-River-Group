@@ -26,8 +26,8 @@ export default function Hero() {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Building Enduring Businesses with{' '}
-              <span className="text-white drop-shadow-lg">Integrity</span> and{' '}
-              <span className="text-white drop-shadow-lg">Impact</span>
+              <span className="text-warning-orange drop-shadow-lg">Integrity</span> and{' '}
+              <span className="text-warning-orange drop-shadow-lg">Impact</span>
             </h1>
             
             <p className="text-xl text-gray-100 leading-relaxed">
