@@ -50,13 +50,26 @@ export default function IndusRiverLogo({
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-label="Indus River Group Logo - 8-pointed compass rose"
+        style={{ 
+          shapeRendering: 'geometricPrecision',
+          imageRendering: 'crisp-edges'
+        }}
       >
+        <defs>
+          <filter id="crisp" x="0%" y="0%" width="100%" height="100%">
+            <feComponentTransfer>
+              <feFuncA type="discrete" tableValues="0 .5 1"/>
+            </feComponentTransfer>
+          </filter>
+        </defs>
+        
         {/* Outer Circle - Dark Blue */}
         <circle
           cx="50"
           cy="50"
           r="50"
           fill={colors.outerCircle}
+          filter="url(#crisp)"
         />
         
         {/* Inner Circle - Light Blue */}
@@ -65,33 +78,34 @@ export default function IndusRiverLogo({
           cy="50"
           r="30"
           fill={colors.innerCircle}
+          filter="url(#crisp)"
         />
         
-        {/* 8-Pointed Compass Rose - White Spokes */}
-        <g fill={colors.spokes}>
+        {/* 8-Pointed Compass Rose - White Spokes with precise paths */}
+        <g fill={colors.spokes} filter="url(#crisp)">
           {/* North Point - Long Cardinal */}
-          <polygon points="50,8 45,42 50,38 55,42" />
+          <path d="M 50,0 L 46,40 L 50,36 L 54,40 Z" />
           
           {/* Northeast Point - Short Diagonal */}
-          <polygon points="65,35 52,48 56,50 60,46" />
+          <path d="M 71.2,28.8 L 54,46 L 57,48 L 60,45 Z" />
           
           {/* East Point - Long Cardinal */}
-          <polygon points="92,50 58,45 62,50 58,55" />
+          <path d="M 100,50 L 60,46 L 64,50 L 60,54 Z" />
           
           {/* Southeast Point - Short Diagonal */}
-          <polygon points="65,65 60,54 56,50 52,52" />
+          <path d="M 71.2,71.2 L 60,55 L 57,52 L 54,54 Z" />
           
           {/* South Point - Long Cardinal */}
-          <polygon points="50,92 55,58 50,62 45,58" />
+          <path d="M 50,100 L 54,60 L 50,64 L 46,60 Z" />
           
           {/* Southwest Point - Short Diagonal */}
-          <polygon points="35,65 40,54 44,50 48,52" />
+          <path d="M 28.8,71.2 L 40,55 L 43,52 L 46,54 Z" />
           
           {/* West Point - Long Cardinal */}
-          <polygon points="8,50 42,55 38,50 42,45" />
+          <path d="M 0,50 L 40,54 L 36,50 L 40,46 Z" />
           
           {/* Northwest Point - Short Diagonal */}
-          <polygon points="35,35 40,46 44,50 48,48" />
+          <path d="M 28.8,28.8 L 40,45 L 43,48 L 46,46 Z" />
         </g>
         
         {/* Center Circle */}
@@ -100,6 +114,7 @@ export default function IndusRiverLogo({
           cy="50"
           r="6"
           fill={colors.centerCircle}
+          filter="url(#crisp)"
         />
       </svg>
       
