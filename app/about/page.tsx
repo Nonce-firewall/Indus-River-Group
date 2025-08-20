@@ -28,8 +28,8 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             {/* Archaeological Discovery */}
             <div className="space-y-6">
-              <div className="w-16 h-16 bg-indus-blue bg-opacity-10 rounded-full flex items-center justify-center">
-                <Navigation className="w-8 h-8 text-indus-blue" />
+              <div className="w-16 h-16 bg-indus-blue rounded-full flex items-center justify-center">
+                <Navigation className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-indus-blue">
                 Archaeological Legacy
@@ -49,8 +49,8 @@ export default function About() {
 
             {/* River Wisdom */}
             <div className="space-y-6">
-              <div className="w-16 h-16 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center">
-                <Mountain className="w-8 h-8 text-cerulean" />
+              <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center">
+                <Mountain className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-cerulean">
                 River Guidance
@@ -70,8 +70,8 @@ export default function About() {
 
             {/* Modern Application */}
             <div className="space-y-6">
-              <div className="w-16 h-16 bg-warm-grey bg-opacity-10 rounded-full flex items-center justify-center">
-                <TrendingUp className="w-8 h-8 text-warm-grey" />
+              <div className="w-16 h-16 bg-warm-grey rounded-full flex items-center justify-center">
+                <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-warm-grey">
                 Business Stewardship
@@ -116,8 +116,8 @@ export default function About() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mb-6">
+                <Shield className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 No Forced Exit Timeline
@@ -130,8 +130,8 @@ export default function About() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mb-6">
-                <Heart className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mb-6">
+                <Heart className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 Values-Driven Approach
@@ -144,8 +144,8 @@ export default function About() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex-items-center justify-center mb-6">
-                <Handshake className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mb-6">
+                <Handshake className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 Flexible Structures
@@ -158,8 +158,8 @@ export default function About() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mb-6">
-                <Users className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mb-6">
+                <Users className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 Operator Experience

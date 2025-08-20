@@ -46,8 +46,8 @@ export default function SectorGrid() {
                 key={index}
                 className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300 card-hover"
               >
-                <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-6 h-6 text-cerulean" />
+                <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-indus-blue mb-2 text-sm">{sector.name}</h3>
                 <p className="text-xs text-warm-grey">{sector.description}</p>
