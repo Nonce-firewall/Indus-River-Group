@@ -41,7 +41,7 @@ export default function ValueProposition() {
                 className="bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-300 text-center card-hover"
               >
                 <div className="w-16 h-16 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Icon className="w-8 h-8 text-cerulean" />
+                  <Icon className="w-8 h-8 text-white bg-cerulean rounded-full p-1" />
                 </div>
                 <h3 className="text-xl font-semibold text-indus-blue mb-4">
                   {value.title}
