@@ -52,17 +52,13 @@ export default function InvestmentPhilosophy() {
                 </div>
                 <h3 className="text-lg font-semibold">{principle.title}</h3>
                 <p className="text-gray-300 text-sm leading-relaxed">
-              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
-                <Icon className="w-6 h-6 text-white" />
+                  {principle.description}
+                </p>
               </div>
             );
           })}
         </div>
       </div>
-            )
-    }
-    )
-    }
     </section>
   );
 }
