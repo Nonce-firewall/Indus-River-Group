@@ -13,13 +13,21 @@ export async function sendContactEmail(emailData: {
     contentType: string;
   }>;
 }) {
-  // Configure Gmail SMTP transporter
+  // Configure Gmail SMTP transporter with robust settings
   const transporter = createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
     },
+    tls: {
+      rejectUnauthorized: false
+    },
+    connectionTimeout: 60000, // 60 seconds
+    greetingTimeout: 30000, // 30 seconds
+    socketTimeout: 60000, // 60 seconds
   });
 
   try {
@@ -47,12 +55,21 @@ export async function verifyEmailConfig() {
     throw new Error('Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env.local');
   }
 
+  // Create transporter with the same configuration as sendContactEmail
   const transporter = createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
     },
+    tls: {
+      rejectUnauthorized: false
+    },
+    connectionTimeout: 60000,
+    greetingTimeout: 30000,
+    socketTimeout: 60000,
   });
 
   try {
@@ -61,6 +78,15 @@ export async function verifyEmailConfig() {
     return true;
   } catch (error) {
     console.error('Email configuration verification failed:', error);
-    throw error;
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes('ETIMEDOUT') || error.message.includes('Greeting never received')) {
+        throw new Error('Unable to connect to Gmail SMTP server. Please check your internet connection and ensure Gmail credentials are correct.');
+      }
+      if (error.message.includes('Invalid login')) {
+        throw new Error('Gmail authentication failed. Please verify your email and app password are correct.');
+      }
+    }
+    throw new Error(`Email configuration error: ${error}`);
   }
 }

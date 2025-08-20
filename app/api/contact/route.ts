@@ -97,15 +97,25 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     
     // Provide specific error messages
     if (error instanceof Error) {
-      if (error.message.includes('Gmail credentials not configured')) {
+      if (error.message.includes('Gmail credentials not configured') || 
+          error.message.includes('Email configuration error')) {
         return NextResponse.json(
           { error: 'Email service not configured. Please contact us directly at info@indusrivergroup.com' },
           { status: 500 }
         );
       }
-      if (error.message.includes('Invalid login')) {
+      if (error.message.includes('Invalid login') || 
+          error.message.includes('Gmail authentication failed')) {
         return NextResponse.json(
           { error: 'Email authentication failed. Please contact us directly at info@indusrivergroup.com' },
+          { status: 500 }
+        );
+      }
+      if (error.message.includes('ETIMEDOUT') || 
+          error.message.includes('Greeting never received') ||
+          error.message.includes('Unable to connect to Gmail SMTP server')) {
+        return NextResponse.json(
+          { error: 'Unable to connect to email server. Please try again in a few minutes or contact us directly at info@indusrivergroup.com' },
           { status: 500 }
         );
       }
