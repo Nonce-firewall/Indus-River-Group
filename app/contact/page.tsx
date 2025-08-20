@@ -22,6 +22,7 @@ export default function Contact() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,6 +104,39 @@ export default function Contact() {
 
   const removeFile = (index: number) => {
     setAttachedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+    
+    const files = Array.from(e.dataTransfer.files);
+    const validFiles = files.filter(file => {
+      // Limit file size to 10MB
+      if (file.size > 10 * 1024 * 1024) {
+        setSubmitStatus({
+          type: 'error',
+          message: `File "${file.name}" is too large. Maximum size is 10MB.`
+        });
+        return false;
+      }
+      return true;
+    });
+    
+    setAttachedFiles(prev => [...prev, ...validFiles]);
   };
 
   return (
@@ -310,15 +344,29 @@ export default function Contact() {
                 </label>
                 <div className="space-y-4">
                   <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                    <label 
+                      className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+                        isDragOver 
+                          ? 'border-cerulean bg-blue-50 border-solid' 
+                          : 'border-gray-300 bg-gray-50 hover:bg-gray-100'
+                      }`}
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                    >
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         <svg className="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                         </svg>
-                        <p className="mb-2 text-sm text-gray-500">
-                          <span className="font-semibold">Click to upload</span> or drag and drop
+                        <p className={`mb-2 text-sm ${isDragOver ? 'text-cerulean font-medium' : 'text-gray-500'}`}>
+                          <span className="font-semibold">
+                            {isDragOver ? 'Drop files here' : 'Click to upload'}
+                          </span> 
+                          {!isDragOver && ' or drag and drop'}
                         </p>
-                        <p className="text-xs text-gray-500">PDF, DOC, DOCX, XLS, XLSX (MAX. 10MB each)</p>
+                        <p className={`text-xs ${isDragOver ? 'text-cerulean' : 'text-gray-500'}`}>
+                          PDF, DOC, DOCX, XLS, XLSX (MAX. 10MB each)
+                        </p>
                       </div>
                       <input
                         type="file"
