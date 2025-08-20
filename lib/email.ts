@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import { createTransport } from 'nodemailer';
 
 // Email service for sending contact form submissions
 export async function sendContactEmail(emailData: {
@@ -14,7 +14,7 @@ export async function sendContactEmail(emailData: {
   }>;
 }) {
   // Configure Gmail SMTP transporter
-  const transporter = nodemailer.createTransporter({
+  const transporter = createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
@@ -47,7 +47,7 @@ export async function verifyEmailConfig() {
     throw new Error('Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env.local');
   }
 
-  const transporter = nodemailer.createTransporter({
+  const transporter = createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
