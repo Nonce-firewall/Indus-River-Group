@@ -36,8 +36,8 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="group" style={{ minHeight: '48px', padding: '24px 0' }}>
-            <IndusRiverLogo size={48} variant="primary" />
+          <Link href="/" className="group">
+            <IndusRiverLogo size={40} variant="primary" />
           </Link>
 
           {/* Desktop Navigation */}
