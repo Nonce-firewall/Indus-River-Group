@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   keywords: 'private equity, small business acquisition, patient capital, business stewardship, investment firm',
   authors: [{ name: 'Indus River Group' }],
   icons: {
-    icon: '/image.png',
-    shortcut: '/image.png',
-    apple: '/image.png',
+    icon: '/image copy.png',
+    shortcut: '/image copy.png',
+    apple: '/image copy.png',
   },
   openGraph: {
     title: 'Indus River Group - Patient Capital for Enduring Businesses',
