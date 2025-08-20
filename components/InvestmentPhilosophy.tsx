@@ -47,8 +47,8 @@ export default function InvestmentPhilosophy() {
                 key={index}
                 className="text-center space-y-4 p-6 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
               >
-                <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
-                  <Icon className="w-6 h-6 text-cerulean" />
+                <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold">{principle.title}</h3>
                 <p className="text-gray-300 text-sm leading-relaxed">
