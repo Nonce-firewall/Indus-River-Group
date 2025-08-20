@@ -20,7 +20,7 @@ const nextConfig = {
     return config;
   },
   // Static export settings
-  output: 'export',
+  // output: 'export', // Commented out to fix workUnitAsyncStorage error
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
