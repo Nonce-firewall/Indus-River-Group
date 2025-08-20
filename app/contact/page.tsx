@@ -21,7 +21,6 @@ export default function Contact() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
-  const [showGoogleForm, setShowGoogleForm] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,9 +73,6 @@ export default function Contact() {
     }));
   };
 
-  const handleGoogleFormSubmit = () => {
-    setShowGoogleForm(true);
-  };
   return (
     <main className="min-h-screen">
       <Header />
@@ -287,44 +283,6 @@ export default function Contact() {
               </div>
             </form>
 
-            {/* Google Form Alternative */}
-            <div className="mt-8 pt-8 border-t border-gray-200">
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-indus-blue mb-4">
-                  Alternative: Use Google Form
-                </h3>
-                <p className="text-charcoal-grey mb-4">
-                  If you prefer, you can also submit your inquiry through our Google Form:
-                </p>
-                <button
-                  type="button"
-                  onClick={handleGoogleFormSubmit}
-                  className="btn-secondary"
-                >
-                  Open Google Form
-                </button>
-              </div>
-
-              {/* Google Form Embed */}
-              {showGoogleForm && (
-                <div className="mt-6">
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-charcoal-grey mb-4 text-center">
-                      <strong>Note:</strong> You'll need to create a Google Form and replace the URL below with your actual form URL.
-                    </p>
-                    <div className="bg-white p-4 rounded border">
-                      <p className="text-center text-charcoal-grey">
-                        Google Form will be embedded here once you provide the form URL.
-                        <br />
-                        <span className="text-sm">
-                          Create your form at <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="text-cerulean hover:underline">forms.google.com</a>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </section>
