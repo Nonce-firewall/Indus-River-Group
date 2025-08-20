@@ -170,8 +170,8 @@ export default function Approach() {
               return (
                 <div key={index} className="text-center space-y-6">
                   <div className="relative">
-                    <div className="w-20 h-20 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto">
-                      <Icon className="w-10 h-10 text-cerulean" />
+                    <div className="w-20 h-20 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                      <Icon className="w-10 h-10 text-white" />
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 bg-indus-blue text-white rounded-full flex items-center justify-center text-sm font-bold">
                       {index + 1}

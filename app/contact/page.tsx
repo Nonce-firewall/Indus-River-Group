@@ -53,8 +53,8 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Business Owners */}
             <div className="bg-gray-50 rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Briefcase className="w-8 h-8 text-cerulean" />
+              <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-6">
+                <Briefcase className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 For Business Owners
@@ -73,8 +73,8 @@ export default function Contact() {
 
             {/* Investors */}
             <div className="bg-gray-50 rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-indus-blue bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-indus-blue" />
+              <div className="w-16 h-16 bg-indus-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 For Investors
@@ -93,8 +93,8 @@ export default function Contact() {
 
             {/* Intermediaries */}
             <div className="bg-gray-50 rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-warm-grey bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Handshake className="w-8 h-8 text-warm-grey" />
+              <div className="w-16 h-16 bg-warm-grey rounded-full flex items-center justify-center mx-auto mb-6">
+                <Handshake className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-indus-blue mb-4">
                 For Intermediaries
@@ -239,24 +239,24 @@ export default function Contact() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto">
-                <Mail className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                <Mail className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-semibold text-indus-blue">Email</h3>
               <p className="text-charcoal-grey">info@indusrivergroup.com</p>
             </div>
 
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto">
-                <MapPin className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                <MapPin className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-semibold text-indus-blue">Geographic Coverage</h3>
               <p className="text-charcoal-grey">United States & India</p>
             </div>
 
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto">
-                <Phone className="w-6 h-6 text-cerulean" />
+              <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                <Phone className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-semibold text-indus-blue">Response Time</h3>
               <p className="text-charcoal-grey">Within 24-48 hours</p>

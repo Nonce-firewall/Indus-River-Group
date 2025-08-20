@@ -125,8 +125,8 @@ export default function Team() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Users className="w-8 h-8 text-cerulean" />
+            <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-6">
+              <Users className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-3xl font-bold text-indus-blue mb-6">
               Advisory Network
