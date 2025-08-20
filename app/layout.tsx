@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures.',
   keywords: 'private equity, small business acquisition, patient capital, business stewardship, investment firm',
   authors: [{ name: 'Indus River Group' }],
+  icons: {
+    icon: '/image.png',
+    shortcut: '/image.png',
+    apple: '/image.png',
+  },
   openGraph: {
     title: 'Indus River Group - Patient Capital for Enduring Businesses',
     description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures.',

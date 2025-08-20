@@ -10,7 +10,16 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1">
             <div className="mb-4">
-              <IndusRiverLogo size={40} variant="white" />
+              <div className="flex items-center">
+                <img 
+                  src="/image.png" 
+                  alt="Indus River Group" 
+                  className="h-10 w-10 mr-3" 
+                />
+                <span className="text-lg font-semibold text-white">
+                  INDUS RIVER
+                </span>
+              </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
               Building enduring businesses with integrity and impact through patient stewardship 

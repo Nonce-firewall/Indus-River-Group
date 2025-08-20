@@ -37,7 +37,16 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="group">
-            <IndusRiverLogo size={40} variant="primary" />
+            <div className="flex items-center">
+              <img 
+                src="/image.png" 
+                alt="Indus River Group" 
+                className="h-12 w-12 mr-3" 
+              />
+              <span className="text-xl font-semibold" style={{color: '#08164F'}}>
+                INDUS RIVER
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

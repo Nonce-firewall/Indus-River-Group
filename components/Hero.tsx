@@ -14,6 +14,16 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Main Content */}
           <div className="text-white space-y-8 animate-fade-in-up">
+            <div className="flex items-center mb-6">
+              <img 
+                src="/image.png" 
+                alt="Indus River Group" 
+                className="h-16 w-16 mr-4" 
+              />
+              <span className="text-2xl font-bold" style={{color: '#FFFFFF'}}>
+                INDUS RIVER GROUP
+              </span>
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Building Enduring Businesses with{' '}
               <span className="text-cerulean">Integrity</span> and{' '}
