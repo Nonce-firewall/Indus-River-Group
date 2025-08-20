@@ -57,25 +57,33 @@ export default function Hero() {
           {/* Right Column - Key Statistics */}
           <div className="grid grid-cols-2 gap-6 animate-fade-in">
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
-              <TrendingUp className="w-8 h-8 text-cerulean mx-auto mb-3" />
+              <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="w-6 h-6 text-cerulean" />
+              </div>
               <div className="text-2xl font-bold">$1M–$5M</div>
               <div className="text-sm text-gray-300">EBITDA Range</div>
             </div>
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
-              <Target className="w-8 h-8 text-cerulean mx-auto mb-3" />
+              <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="w-6 h-6 text-cerulean" />
+              </div>
               <div className="text-2xl font-bold">$3.5M–$50M</div>
               <div className="text-sm text-gray-300">Revenue Range</div>
             </div>
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
-              <Clock className="w-8 h-8 text-cerulean mx-auto mb-3" />
+              <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-6 h-6 text-cerulean" />
+              </div>
               <div className="text-2xl font-bold">Indefinite</div>
               <div className="text-sm text-gray-300">Hold Period</div>
             </div>
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
-              <Globe className="w-8 h-8 text-cerulean mx-auto mb-3" />
+              <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-6 h-6 text-cerulean" />
+              </div>
               <div className="text-2xl font-bold">US & India</div>
               <div className="text-sm text-gray-300">Geographic Focus</div>
             </div>
