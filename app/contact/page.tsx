@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake } from 'lucide-react';
 
 export default function Contact() {
+  const googleFormRef = useRef<HTMLIFrameElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,11 +16,55 @@ export default function Contact() {
     audienceType: 'business-owner'
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+  const [showGoogleForm, setShowGoogleForm] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    // In production, this would send to your backend
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message || 'Thank you for your message. We will get back to you within 24-48 hours.'
+        });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          role: '',
+          message: '',
+          audienceType: 'business-owner'
+        });
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try the Google Form below or email us directly.'
+      });
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -29,6 +74,9 @@ export default function Contact() {
     }));
   };
 
+  const handleGoogleFormSubmit = () => {
+    setShowGoogleForm(true);
+  };
   return (
     <main className="min-h-screen">
       <Header />
@@ -122,6 +170,17 @@ export default function Contact() {
               Get in Touch
             </h2>
             
+            {/* Status Messages */}
+            {submitStatus.type && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                submitStatus.type === 'success' 
+                  ? 'bg-green-50 text-green-800 border border-green-200' 
+                  : 'bg-red-50 text-red-800 border border-red-200'
+              }`}>
+                {submitStatus.message}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Audience Type */}
               <div>
@@ -220,12 +279,52 @@ export default function Contact() {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="btn-primary"
+                  disabled={isSubmitting}
+                  className={`btn-primary ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
             </form>
+
+            {/* Google Form Alternative */}
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-indus-blue mb-4">
+                  Alternative: Use Google Form
+                </h3>
+                <p className="text-charcoal-grey mb-4">
+                  If you prefer, you can also submit your inquiry through our Google Form:
+                </p>
+                <button
+                  type="button"
+                  onClick={handleGoogleFormSubmit}
+                  className="btn-secondary"
+                >
+                  Open Google Form
+                </button>
+              </div>
+
+              {/* Google Form Embed */}
+              {showGoogleForm && (
+                <div className="mt-6">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-sm text-charcoal-grey mb-4 text-center">
+                      <strong>Note:</strong> You'll need to create a Google Form and replace the URL below with your actual form URL.
+                    </p>
+                    <div className="bg-white p-4 rounded border">
+                      <p className="text-center text-charcoal-grey">
+                        Google Form will be embedded here once you provide the form URL.
+                        <br />
+                        <span className="text-sm">
+                          Create your form at <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="text-cerulean hover:underline">forms.google.com</a>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
