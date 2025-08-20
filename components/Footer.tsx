@@ -14,9 +14,9 @@ export default function Footer() {
                 <img 
                   src="/Indus River logo alone.png" 
                   alt="Indus River Group" 
-                  className="h-10 w-10 mr-3" 
+                  className="h-12 w-12 mr-4" 
                 />
-                <span className="text-lg text-white" style={{fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+                <span className="text-xl text-white" style={{fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                   INDUS RIVER
                 </span>
               </div>

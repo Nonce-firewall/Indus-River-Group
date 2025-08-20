@@ -18,9 +18,9 @@ export default function Hero() {
               <img 
                 src="/Indus River logo alone.png" 
                 alt="Indus River Group" 
-                className="h-16 w-16 mr-4" 
+                className="h-20 w-20 mr-5" 
               />
-              <span className="text-2xl" style={{color: '#FFFFFF', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-3xl" style={{color: '#FFFFFF', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 INDUS RIVER GROUP
               </span>
             </div>
