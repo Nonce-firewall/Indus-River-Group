@@ -70,28 +70,28 @@ export default function IndusRiverLogo({
         {/* 8-Pointed Compass Rose - White Spokes */}
         <g fill={colors.spokes}>
           {/* North Point - Long Cardinal */}
-          <polygon points="50,10 48,42 50,40 52,42" />
+          <polygon points="50,8 45,42 50,38 55,42" />
           
           {/* Northeast Point - Short Diagonal */}
-          <polygon points="71,29 52,48 54,50 56,48" />
+          <polygon points="79,21 52,48 56,50 60,46" />
           
           {/* East Point - Long Cardinal */}
-          <polygon points="90,50 58,48 60,50 58,52" />
+          <polygon points="92,50 58,45 62,50 58,55" />
           
           {/* Southeast Point - Short Diagonal */}
-          <polygon points="71,71 56,52 54,50 52,52" />
+          <polygon points="79,79 60,54 56,50 52,52" />
           
           {/* South Point - Long Cardinal */}
-          <polygon points="50,90 52,58 50,60 48,58" />
+          <polygon points="50,92 55,58 50,62 45,58" />
           
           {/* Southwest Point - Short Diagonal */}
-          <polygon points="29,71 48,52 46,50 44,52" />
+          <polygon points="21,79 40,54 44,50 48,52" />
           
           {/* West Point - Long Cardinal */}
-          <polygon points="10,50 42,52 40,50 42,48" />
+          <polygon points="8,50 42,55 38,50 42,45" />
           
           {/* Northwest Point - Short Diagonal */}
-          <polygon points="29,29 44,48 46,50 48,48" />
+          <polygon points="21,21 40,46 44,50 48,48" />
         </g>
         
         {/* Center Circle */}
