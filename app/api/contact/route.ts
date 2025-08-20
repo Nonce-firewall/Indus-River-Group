@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendContactEmail, verifyEmailConfig } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
+    // Verify email configuration first
+    await verifyEmailConfig();
+
     const formData = await request.formData();
     
     const name = formData.get('name') as string;
@@ -11,19 +15,25 @@ export async function POST(request: NextRequest) {
     const message = formData.get('message') as string;
     const audienceType = formData.get('audienceType') as string;
     
-    // Get attached files
-    const attachments: { name: string; size: number; type: string }[] = [];
+    // Process attached files
+    const attachments: Array<{
+      filename: string;
+      content: Buffer;
+      contentType: string;
+    }> = [];
+    
     const entries = Array.from(formData.entries());
     
-    entries.forEach(([key, value]) => {
+    for (const [key, value] of entries) {
       if (key.startsWith('attachment_') && value instanceof File) {
+        const buffer = Buffer.from(await value.arrayBuffer());
         attachments.push({
-          name: value.name,
-          size: value.size,
-          type: value.type
+          filename: value.name,
+          content: buffer,
+          contentType: value.type || 'application/octet-stream'
         });
       }
-    });
+    }
 
     // Validate required fields
     if (!name || !email || !message || !audienceType) {
@@ -33,11 +43,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Email content
+    // Create email content
     const emailContent = `
 New Contact Form Submission from Indus River Group Website
 
-Contact Type: ${audienceType}
+Contact Type: ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}
 Name: ${name}
 Email: ${email}
 Company: ${company || 'Not provided'}
@@ -48,25 +58,31 @@ ${message}
 
 ${attachments.length > 0 ? `
 Attachments (${attachments.length} files):
-${attachments.map(att => `- ${att.name} (${(att.size / 1024 / 1024).toFixed(2)} MB, ${att.type})`).join('\n')}
+${attachments.map(att => `- ${att.filename} (${(att.content.length / 1024 / 1024).toFixed(2)} MB)`).join('\n')}
 ` : ''}
 ---
-Submitted at: ${new Date().toLocaleString()}
+Submitted at: ${new Date().toLocaleString('en-US', { 
+  timeZone: 'America/New_York',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZoneName: 'short'
+})}
     `.trim();
 
-    // For now, we'll use a simple email service
-    // You'll need to configure this with your Google Workspace credentials
+    // Send email
     const emailData = {
-      to: 'info@indusrivergroup.com', // Replace with your actual email
-      subject: `New Contact Form Submission - ${audienceType}`,
+      to: process.env.GMAIL_USER || 'info@indusrivergroup.com',
+      subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
       text: emailContent,
       from: email,
-      replyTo: email
+      replyTo: email,
+      attachments: attachments
     };
 
-    // TODO: Integrate with your preferred email service
-    // Options: Gmail API, SendGrid, Resend, etc.
-    console.log('Email would be sent:', emailData);
+    await sendContactEmail(emailData);
 
     return NextResponse.json(
       { 
@@ -78,8 +94,25 @@ Submitted at: ${new Date().toLocaleString()}
 
   } catch (error) {
     console.error('Contact form error:', error);
+    
+    // Provide specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes('Gmail credentials not configured')) {
+        return NextResponse.json(
+          { error: 'Email service not configured. Please contact us directly at info@indusrivergroup.com' },
+          { status: 500 }
+        );
+      }
+      if (error.message.includes('Invalid login')) {
+        return NextResponse.json(
+          { error: 'Email authentication failed. Please contact us directly at info@indusrivergroup.com' },
+          { status: 500 }
+        );
+      }
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to send message. Please try again.' },
+      { error: 'Failed to send message. Please try again or contact us directly at info@indusrivergroup.com' },
       { status: 500 }
     );
   }

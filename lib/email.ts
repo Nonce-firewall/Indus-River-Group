@@ -1,71 +1,66 @@
-// Email service configuration
-// You can choose from multiple email services:
+import nodemailer from 'nodemailer';
 
-// Option 1: Gmail API (Recommended for Google Workspace)
-export async function sendEmailViaGmail(emailData: {
+// Email service for sending contact form submissions
+export async function sendContactEmail(emailData: {
   to: string;
   subject: string;
   text: string;
   from: string;
   replyTo: string;
+  attachments?: Array<{
+    filename: string;
+    content: Buffer;
+    contentType: string;
+  }>;
 }) {
-  // TODO: Implement Gmail API integration
-  // You'll need to:
-  // 1. Enable Gmail API in Google Cloud Console
-  // 2. Create service account credentials
-  // 3. Install googleapis package: npm add googleapis
-  
-  console.log('Gmail API integration needed:', emailData);
-  return { success: true };
-}
-
-// Option 2: Nodemailer with Gmail SMTP
-export async function sendEmailViaSMTP(emailData: {
-  to: string;
-  subject: string;
-  text: string;
-  from: string;
-  replyTo: string;
-}) {
-  const nodemailer = require('nodemailer');
-  
-  // Configure with your Google Workspace credentials
+  // Configure Gmail SMTP transporter
   const transporter = nodemailer.createTransporter({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER, // Your Google Workspace email
-      pass: process.env.GMAIL_APP_PASSWORD, // App-specific password
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
     },
   });
 
   try {
-    const info = await transporter.sendMail({
+    const mailOptions = {
       from: `"Indus River Group Website" <${process.env.GMAIL_USER}>`,
       to: emailData.to,
       subject: emailData.subject,
       text: emailData.text,
       replyTo: emailData.replyTo,
-    });
+      attachments: emailData.attachments || [],
+    };
 
-    console.log('Email sent:', info.messageId);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Email sending failed:', error);
-    throw error;
+    throw new Error(`Failed to send email: ${error}`);
   }
 }
 
-// Option 3: Third-party services (SendGrid, Resend, etc.)
-export async function sendEmailViaService(emailData: {
-  to: string;
-  subject: string;
-  text: string;
-  from: string;
-  replyTo: string;
-}) {
-  // Example with Resend (you can also use SendGrid, Mailgun, etc.)
-  // npm add resend
-  
-  console.log('Third-party email service integration needed:', emailData);
-  return { success: true };
+// Verify email configuration
+export async function verifyEmailConfig() {
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    throw new Error('Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env.local');
+  }
+
+  const transporter = nodemailer.createTransporter({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
+  try {
+    await transporter.verify();
+    console.log('Email configuration verified successfully');
+    return true;
+  } catch (error) {
+    console.error('Email configuration verification failed:', error);
+    throw error;
+  }
 }
