@@ -2,8 +2,28 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, email, company, role, message, audienceType } = body;
+    const formData = await request.formData();
+    
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const company = formData.get('company') as string;
+    const role = formData.get('role') as string;
+    const message = formData.get('message') as string;
+    const audienceType = formData.get('audienceType') as string;
+    
+    // Get attached files
+    const attachments: { name: string; size: number; type: string }[] = [];
+    const entries = Array.from(formData.entries());
+    
+    entries.forEach(([key, value]) => {
+      if (key.startsWith('attachment_') && value instanceof File) {
+        attachments.push({
+          name: value.name,
+          size: value.size,
+          type: value.type
+        });
+      }
+    });
 
     // Validate required fields
     if (!name || !email || !message || !audienceType) {
@@ -26,6 +46,10 @@ Role: ${role || 'Not provided'}
 Message:
 ${message}
 
+${attachments.length > 0 ? `
+Attachments (${attachments.length} files):
+${attachments.map(att => `- ${att.name} (${(att.size / 1024 / 1024).toFixed(2)} MB, ${att.type})`).join('\n')}
+` : ''}
 ---
 Submitted at: ${new Date().toLocaleString()}
     `.trim();
