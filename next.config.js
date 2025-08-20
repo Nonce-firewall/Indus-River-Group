@@ -8,13 +8,6 @@ const nextConfig = {
   swcMinify: false,
   // Reduce memory usage
   webpack: (config, { dev, isServer }) => {
-    // Disable SWC loader
-    config.module.rules.forEach((rule) => {
-      if (rule.use && rule.use.loader === 'next-swc-loader') {
-        rule.use.loader = 'babel-loader';
-      }
-    });
-    
     // Reduce memory usage
     config.optimization = {
       ...config.optimization,
