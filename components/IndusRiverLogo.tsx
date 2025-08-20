@@ -73,25 +73,25 @@ export default function IndusRiverLogo({
           <polygon points="50,8 45,42 50,38 55,42" />
           
           {/* Northeast Point - Short Diagonal */}
-          <polygon points="79,21 52,48 56,50 60,46" />
+          <polygon points="65,35 52,48 56,50 60,46" />
           
           {/* East Point - Long Cardinal */}
           <polygon points="92,50 58,45 62,50 58,55" />
           
           {/* Southeast Point - Short Diagonal */}
-          <polygon points="79,79 60,54 56,50 52,52" />
+          <polygon points="65,65 60,54 56,50 52,52" />
           
           {/* South Point - Long Cardinal */}
           <polygon points="50,92 55,58 50,62 45,58" />
           
           {/* Southwest Point - Short Diagonal */}
-          <polygon points="21,79 40,54 44,50 48,52" />
+          <polygon points="35,65 40,54 44,50 48,52" />
           
           {/* West Point - Long Cardinal */}
           <polygon points="8,50 42,55 38,50 42,45" />
           
           {/* Northwest Point - Short Diagonal */}
-          <polygon points="21,21 40,46 44,50 48,48" />
+          <polygon points="35,35 40,46 44,50 48,48" />
         </g>
         
         {/* Center Circle */}
