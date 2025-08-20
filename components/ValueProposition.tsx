@@ -48,16 +48,12 @@ export default function ValueProposition() {
                 </h3>
                 <p className="text-charcoal-grey leading-relaxed">
                   {value.description}
-                <Icon className="w-8 h-8 text-white" />
+                </p>
               </div>
             );
           })}
         </div>
-            )
       </div>
-    }
-    )
-    }
     </section>
   );
 }
