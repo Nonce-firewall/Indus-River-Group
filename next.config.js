@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable SWC minification to prevent WebAssembly memory errors
+  swcMinify: false,
   // Use webpack's built-in minification instead of SWC
   webpack: (config, { dev, isServer }) => {
     if (!dev) {
