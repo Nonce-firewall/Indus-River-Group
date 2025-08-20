@@ -13,6 +13,12 @@ export async function sendContactEmail(emailData: {
     contentType: string;
   }>;
 }) {
+  // Check if email credentials are configured
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    console.log('Email credentials not configured - skipping email send');
+    return { success: false, error: 'Email service not configured' };
+  }
+
   // Configure Gmail SMTP transporter with robust settings
   const transporter = createTransport({
     host: 'smtp.gmail.com',
@@ -45,7 +51,7 @@ export async function sendContactEmail(emailData: {
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Email sending failed:', error);
-    throw new Error(`Failed to send email: ${error}`);
+    return { success: false, error: `Failed to send email: ${error}` };
   }
 }
 

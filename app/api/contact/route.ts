@@ -3,9 +3,6 @@ import { sendContactEmail, verifyEmailConfig } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify email configuration first
-    await verifyEmailConfig();
-
     const formData = await request.formData();
     
     const name = formData.get('name') as string;
@@ -82,7 +79,15 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       attachments: attachments
     };
 
-    await sendContactEmail(emailData);
+    const emailResult = await sendContactEmail(emailData);
+    
+    if (!emailResult.success) {
+      console.error('Email sending failed:', emailResult.error);
+      return NextResponse.json(
+        { error: 'Email service not configured. Please contact us directly at info@indusrivergroup.com' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { 
