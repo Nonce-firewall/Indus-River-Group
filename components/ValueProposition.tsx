@@ -48,7 +48,7 @@ export default function ValueProposition() {
                 </h3>
                 <p className="text-charcoal-grey leading-relaxed">
                   {value.description}
-                </p>
+                <Icon className="w-8 h-8 text-white" />
               </div>
             );
           })}
