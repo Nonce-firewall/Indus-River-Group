@@ -15,28 +15,28 @@ export async function sendContactEmail(emailData: {
 }) {
   // Check if email credentials are configured
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('Email credentials not configured - skipping email send');
+    console.warn('Email credentials not configured - skipping email send');
     return { success: false, error: 'Email service not configured' };
   }
 
-  // Configure Gmail SMTP transporter with robust settings
-  const transporter = createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false
-    },
-    connectionTimeout: 60000, // 60 seconds
-    greetingTimeout: 30000, // 30 seconds
-    socketTimeout: 60000, // 60 seconds
-  });
-
   try {
+    // Configure Gmail SMTP transporter with robust settings
+    const transporter = createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false
+      },
+      connectionTimeout: 30000, // Reduced to 30 seconds
+      greetingTimeout: 15000, // Reduced to 15 seconds
+      socketTimeout: 30000, // Reduced to 30 seconds
+    });
+
     const mailOptions = {
       from: `"Indus River Group Website" <${process.env.GMAIL_USER}>`,
       to: emailData.to,
@@ -51,7 +51,32 @@ export async function sendContactEmail(emailData: {
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Email sending failed:', error);
-    return { success: false, error: `Failed to send email: ${error}` };
+    
+    // Handle specific error types
+    if (error instanceof Error) {
+      if (error.message.includes('ETIMEDOUT') || 
+          error.message.includes('Greeting never received') ||
+          error.message.includes('Connection timeout')) {
+        console.warn('SMTP connection timeout - likely network/firewall issue');
+        return { 
+          success: false, 
+          error: 'SMTP connection timeout - email service temporarily unavailable' 
+        };
+      }
+      if (error.message.includes('Invalid login') || 
+          error.message.includes('Authentication failed')) {
+        console.warn('SMTP authentication failed - check credentials');
+        return { 
+          success: false, 
+          error: 'Email authentication failed - check configuration' 
+        };
+      }
+    }
+    
+    return { 
+      success: false, 
+      error: 'Email service temporarily unavailable' 
+    };
   }
 }
 
