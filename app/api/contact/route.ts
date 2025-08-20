@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendContactEmail, verifyEmailConfig } from '@/lib/email';
+import { sendContactEmail, logFormSubmission } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -69,6 +69,19 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 })}
     `.trim();
 
+    // Always log the form submission locally
+    logFormSubmission({
+      audienceType,
+      name,
+      email,
+      company,
+      role,
+      message,
+      attachmentCount: attachments.length,
+      attachmentNames: attachments.map(att => att.filename),
+      submittedAt: new Date().toISOString()
+    });
+
     // Send email
     const emailData = {
       to: process.env.GMAIL_USER || 'info@indusrivergroup.com',
@@ -81,59 +94,23 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     const emailResult = await sendContactEmail(emailData);
     
-    if (!emailResult.success) {
-      console.warn('Email sending failed:', emailResult.error);
-      
-      // Still return success to user but log the email failure
-      return NextResponse.json(
-        { 
-          success: true, 
-          message: 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours. If you need immediate assistance, please contact us directly at info@indusrivergroup.com',
-          emailStatus: 'Email delivery pending - your message has been logged'
-        },
-        { status: 200 }
-      );
-    }
-
+    // Always return success to user regardless of email status
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Thank you for your message. We will get back to you within 24-48 hours.' 
+        message: emailResult.success 
+          ? 'Thank you for your message. We will get back to you within 24-48 hours.'
+          : 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
       },
       { status: 200 }
     );
 
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.log('Contact form processing error:', error);
     
-    // Provide specific error messages
-    if (error instanceof Error) {
-      if (error.message.includes('Gmail credentials not configured') || 
-          error.message.includes('Email configuration error')) {
-        return NextResponse.json(
-          { error: 'Email service not configured. Please contact us directly at info@indusrivergroup.com' },
-          { status: 500 }
-        );
-      }
-      if (error.message.includes('Invalid login') || 
-          error.message.includes('Gmail authentication failed')) {
-        return NextResponse.json(
-          { error: 'Email authentication failed. Please contact us directly at info@indusrivergroup.com' },
-          { status: 500 }
-        );
-      }
-      if (error.message.includes('ETIMEDOUT') || 
-          error.message.includes('Greeting never received') ||
-          error.message.includes('Unable to connect to Gmail SMTP server')) {
-        return NextResponse.json(
-          { error: 'Unable to connect to email server. Please try again in a few minutes or contact us directly at info@indusrivergroup.com' },
-          { status: 500 }
-        );
-      }
-    }
-    
+    // Always return a generic error message
     return NextResponse.json(
-      { error: 'Failed to send message. Please try again or contact us directly at info@indusrivergroup.com' },
+      { error: 'There was an issue processing your request. Please try again or contact us directly at info@indusrivergroup.com' },
       { status: 500 }
     );
   }
