@@ -81,7 +81,7 @@ html {
 
 /* Hero section gradient */
 .hero-gradient {
-  background: linear-gradient(135deg, #4db8e8 0%, #08164F 100%);
+  background: linear-gradient(135deg, #87CEEB 0%, #4682B4 25%, #2F4F4F 50%, #1C1C1C 75%, #000000 100%);
 }
 
 /* Card hover effects */
