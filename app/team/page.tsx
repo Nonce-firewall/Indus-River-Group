@@ -28,6 +28,13 @@ export default function Team() {
             {/* Gaurav Lal */}
             <div className="bg-gray-50 rounded-lg p-8">
               <div className="mb-6">
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+                  <img 
+                    src="/Gaurav. Picture..jpeg" 
+                    alt="Gaurav Lal" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h3 className="text-2xl font-bold text-indus-blue mb-2">
                   Gaurav Lal
                 </h3>
