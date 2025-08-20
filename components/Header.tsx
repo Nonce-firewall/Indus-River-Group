@@ -34,16 +34,16 @@ export default function Header() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
           <Link href="/" className="group">
             <div className="flex items-center">
               <img 
                 src="/Indus River logo alone.png" 
                 alt="Indus River Group" 
-                className="h-16 w-16 mr-4" 
+                className="h-12 w-12 mr-3" 
               />
-              <span className="text-2xl" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-xl" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 INDUS RIVER
               </span>
             </div>
