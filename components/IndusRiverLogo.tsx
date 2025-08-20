@@ -63,44 +63,42 @@ export default function IndusRiverLogo({
         <circle
           cx="50"
           cy="50"
-          r="32"
+          r="28"
           fill={colors.compassBody}
         />
         
-        {/* 8-Pointed Star/Compass Rose - White */}
+        {/* 8-Pointed Compass Rose - White Spokes */}
         <g fill={colors.compassPoints}>
-          {/* Main 4 points (N, E, S, W) - Longer diamond shapes */}
-          {/* North Point */}
-          <path d="M50 18 L45 38 L50 35 L55 38 Z" />
+          {/* North Point - Long */}
+          <path d="M50 22 L48 42 L50 40 L52 42 Z" />
           
-          {/* East Point */}
-          <path d="M82 50 L62 45 L65 50 L62 55 Z" />
+          {/* Northeast Point - Short */}
+          <path d="M67.07 32.93 L55.86 44.14 L57.28 45.56 L58.7 44.14 Z" />
           
-          {/* South Point */}
-          <path d="M50 82 L55 62 L50 65 L45 62 Z" />
+          {/* East Point - Long */}
+          <path d="M78 50 L58 48 L60 50 L58 52 Z" />
           
-          {/* West Point */}
-          <path d="M18 50 L38 55 L35 50 L38 45 Z" />
+          {/* Southeast Point - Short */}
+          <path d="M67.07 67.07 L58.7 55.86 L57.28 54.44 L55.86 55.86 Z" />
           
-          {/* Diagonal 4 points (NE, SE, SW, NW) - Shorter diamond shapes */}
-          {/* Northeast Point */}
-          <path d="M71.5 28.5 L57 40 L60 37 L63 40 Z" />
+          {/* South Point - Long */}
+          <path d="M50 78 L52 58 L50 60 L48 58 Z" />
           
-          {/* Southeast Point */}
-          <path d="M71.5 71.5 L63 60 L60 63 L57 60 Z" />
+          {/* Southwest Point - Short */}
+          <path d="M32.93 67.07 L44.14 55.86 L42.72 54.44 L41.3 55.86 Z" />
           
-          {/* Southwest Point */}
-          <path d="M28.5 71.5 L43 60 L40 63 L37 60 Z" />
+          {/* West Point - Long */}
+          <path d="M22 50 L42 52 L40 50 L42 48 Z" />
           
-          {/* Northwest Point */}
-          <path d="M28.5 28.5 L37 40 L40 37 L43 40 Z" />
+          {/* Northwest Point - Short */}
+          <path d="M32.93 32.93 L41.3 44.14 L42.72 45.56 L44.14 44.14 Z" />
         </g>
         
-        {/* Center Circle - Same as compass body */}
+        {/* Center Circle */}
         <circle
           cx="50"
           cy="50"
-          r="8"
+          r="6"
           fill={colors.centerCircle}
         />
       </svg>
