@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Compass, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
+import IndusRiverLogo from './IndusRiverLogo';
 
 export default function Footer() {
   return (
@@ -8,12 +9,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="col-span-1">
-            <div className="flex items-center space-x-3 mb-4">
-              <Compass className="w-8 h-8 text-cerulean" />
-              <div>
-                <div className="text-white font-bold text-lg">INDUS RIVER</div>
-                <div className="text-cerulean text-xs tracking-widest">GROUP</div>
-              </div>
+            <div className="mb-4">
+              <IndusRiverLogo size={40} variant="white" />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
               Building enduring businesses with integrity and impact through patient stewardship 

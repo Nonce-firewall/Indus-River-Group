@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Compass } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import IndusRiverLogo from './IndusRiverLogo';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,16 +36,8 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <Compass className="w-10 h-10 text-cerulean" />
-            <div className="flex flex-col">
-              <span className={`font-black text-xl leading-tight tracking-wide ${isScrolled ? 'text-indus-blue' : 'text-indus-blue'}`}>
-                INDUS RIVER
-              </span>
-              <span className={`text-xs tracking-widest font-medium ${isScrolled ? 'text-warm-grey' : 'text-charcoal-grey'}`}>
-                GROUP
-              </span>
-            </div>
+          <Link href="/" className="group" style={{ minHeight: '48px', padding: '24px 0' }}>
+            <IndusRiverLogo size={48} variant="primary" />
           </Link>
 
           {/* Desktop Navigation */}
