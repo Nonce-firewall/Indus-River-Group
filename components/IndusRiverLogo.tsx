@@ -21,7 +21,7 @@ export default function IndusRiverLogo({
           outerCircle: '#FFFFFF',
           compassBody: '#FFFFFF',
           compassPoints: '#08164F',
-          centerDot: '#08164F'
+          centerCircle: '#08164F'
         };
       case 'symbol-only':
       case 'primary':
@@ -30,7 +30,7 @@ export default function IndusRiverLogo({
           outerCircle: '#08164F',
           compassBody: '#39A4D2',
           compassPoints: '#FFFFFF',
-          centerDot: '#FFFFFF'
+          centerCircle: '#39A4D2'
         };
     }
   };
@@ -51,7 +51,7 @@ export default function IndusRiverLogo({
         role="img"
         aria-label="Indus River Group Logo - 8-pointed compass rose"
       >
-        {/* Outer Circle */}
+        {/* Outer Circle - Dark Blue */}
         <circle
           cx="50"
           cy="50"
@@ -59,49 +59,49 @@ export default function IndusRiverLogo({
           fill={colors.outerCircle}
         />
         
-        {/* Inner Compass Body Circle */}
+        {/* Inner Compass Body Circle - Light Blue */}
         <circle
           cx="50"
           cy="50"
-          r="28"
+          r="32"
           fill={colors.compassBody}
         />
         
-        {/* 8-Pointed Compass Rose */}
-        {/* Main Cardinal Points (N, E, S, W) - Longer */}
+        {/* 8-Pointed Star/Compass Rose - White */}
         <g fill={colors.compassPoints}>
+          {/* Main 4 points (N, E, S, W) - Longer diamond shapes */}
           {/* North Point */}
-          <polygon points="50,15 46,35 54,35" />
+          <path d="M50 18 L45 38 L50 35 L55 38 Z" />
           
           {/* East Point */}
-          <polygon points="85,50 65,46 65,54" />
+          <path d="M82 50 L62 45 L65 50 L62 55 Z" />
           
           {/* South Point */}
-          <polygon points="50,85 54,65 46,65" />
+          <path d="M50 82 L55 62 L50 65 L45 62 Z" />
           
           {/* West Point */}
-          <polygon points="15,50 35,54 35,46" />
+          <path d="M18 50 L38 55 L35 50 L38 45 Z" />
           
-          {/* Diagonal Points (NE, SE, SW, NW) - Shorter */}
+          {/* Diagonal 4 points (NE, SE, SW, NW) - Shorter diamond shapes */}
           {/* Northeast Point */}
-          <polygon points="73.5,26.5 60,37 66,43" />
+          <path d="M71.5 28.5 L57 40 L60 37 L63 40 Z" />
           
           {/* Southeast Point */}
-          <polygon points="73.5,73.5 66,57 60,63" />
+          <path d="M71.5 71.5 L63 60 L60 63 L57 60 Z" />
           
           {/* Southwest Point */}
-          <polygon points="26.5,73.5 40,63 34,57" />
+          <path d="M28.5 71.5 L43 60 L40 63 L37 60 Z" />
           
           {/* Northwest Point */}
-          <polygon points="26.5,26.5 34,43 40,37" />
+          <path d="M28.5 28.5 L37 40 L40 37 L43 40 Z" />
         </g>
         
-        {/* Center Dot */}
+        {/* Center Circle - Same as compass body */}
         <circle
           cx="50"
           cy="50"
-          r="6"
-          fill={colors.centerDot}
+          r="8"
+          fill={colors.centerCircle}
         />
       </svg>
       
