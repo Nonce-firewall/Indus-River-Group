@@ -19,8 +19,8 @@ export default function IndusRiverLogo({
       case 'white':
         return {
           outerCircle: '#FFFFFF',
-          compassBody: '#FFFFFF',
-          compassPoints: '#08164F',
+          innerCircle: '#FFFFFF',
+          spokes: '#08164F',
           centerCircle: '#08164F'
         };
       case 'symbol-only':
@@ -28,8 +28,8 @@ export default function IndusRiverLogo({
       default:
         return {
           outerCircle: '#08164F',
-          compassBody: '#39A4D2',
-          compassPoints: '#FFFFFF',
+          innerCircle: '#39A4D2',
+          spokes: '#FFFFFF',
           centerCircle: '#39A4D2'
         };
     }
@@ -59,46 +59,46 @@ export default function IndusRiverLogo({
           fill={colors.outerCircle}
         />
         
-        {/* Inner Compass Body Circle - Light Blue */}
+        {/* Inner Circle - Light Blue */}
         <circle
           cx="50"
           cy="50"
-          r="28"
-          fill={colors.compassBody}
+          r="30"
+          fill={colors.innerCircle}
         />
         
         {/* 8-Pointed Compass Rose - White Spokes */}
-        <g fill={colors.compassPoints}>
+        <g fill={colors.spokes}>
           {/* North Point - Long */}
-          <path d="M50 22 L48 42 L50 40 L52 42 Z" />
+          <polygon points="50,20 46,45 50,42 54,45" />
           
           {/* Northeast Point - Short */}
-          <path d="M67.07 32.93 L55.86 44.14 L57.28 45.56 L58.7 44.14 Z" />
+          <polygon points="70.71,29.29 55,45 57.07,47.07 59.14,45" />
           
           {/* East Point - Long */}
-          <path d="M78 50 L58 48 L60 50 L58 52 Z" />
+          <polygon points="80,50 55,46 58,50 55,54" />
           
           {/* Southeast Point - Short */}
-          <path d="M67.07 67.07 L58.7 55.86 L57.28 54.44 L55.86 55.86 Z" />
+          <polygon points="70.71,70.71 59.14,55 57.07,52.93 55,55" />
           
           {/* South Point - Long */}
-          <path d="M50 78 L52 58 L50 60 L48 58 Z" />
+          <polygon points="50,80 54,55 50,58 46,55" />
           
           {/* Southwest Point - Short */}
-          <path d="M32.93 67.07 L44.14 55.86 L42.72 54.44 L41.3 55.86 Z" />
+          <polygon points="29.29,70.71 45,55 42.93,52.93 40.86,55" />
           
           {/* West Point - Long */}
-          <path d="M22 50 L42 52 L40 50 L42 48 Z" />
+          <polygon points="20,50 45,54 42,50 45,46" />
           
           {/* Northwest Point - Short */}
-          <path d="M32.93 32.93 L41.3 44.14 L42.72 45.56 L44.14 44.14 Z" />
+          <polygon points="29.29,29.29 40.86,45 42.93,47.07 45,45" />
         </g>
         
         {/* Center Circle */}
         <circle
           cx="50"
           cy="50"
-          r="6"
+          r="8"
           fill={colors.centerCircle}
         />
       </svg>
