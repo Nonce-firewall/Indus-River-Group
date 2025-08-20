@@ -27,11 +27,11 @@ export default function Footer() {
             </p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-cerulean" />
+                <Mail className="w-4 h-4 text-white" />
                 <span className="text-gray-300">info@indusrivergroup.com</span>
               </div>
               <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-cerulean" />
+                <MapPin className="w-4 h-4 text-white" />
                 <span className="text-gray-300">United States & India</span>
               </div>
             </div>
