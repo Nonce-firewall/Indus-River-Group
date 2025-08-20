@@ -69,36 +69,36 @@ export default function IndusRiverLogo({
         
         {/* 8-Pointed Compass Rose - White Spokes */}
         <g fill={colors.spokes}>
-          {/* North Point - Long */}
-          <polygon points="50,15 47,40 50,38 53,40" />
+          {/* North Point - Long Cardinal */}
+          <polygon points="50,10 48,42 50,40 52,42" />
           
-          {/* Northeast Point - Short */}
-          <polygon points="67,33 52,48 54,50 56,48" />
+          {/* Northeast Point - Short Diagonal */}
+          <polygon points="71,29 52,48 54,50 56,48" />
           
-          {/* East Point - Long */}
-          <polygon points="85,50 60,47 62,50 60,53" />
+          {/* East Point - Long Cardinal */}
+          <polygon points="90,50 58,48 60,50 58,52" />
           
-          {/* Southeast Point - Short */}
-          <polygon points="67,67 56,52 54,50 52,52" />
+          {/* Southeast Point - Short Diagonal */}
+          <polygon points="71,71 56,52 54,50 52,52" />
           
-          {/* South Point - Long */}
-          <polygon points="50,85 53,60 50,62 47,60" />
+          {/* South Point - Long Cardinal */}
+          <polygon points="50,90 52,58 50,60 48,58" />
           
-          {/* Southwest Point - Short */}
-          <polygon points="33,67 48,52 46,50 44,52" />
+          {/* Southwest Point - Short Diagonal */}
+          <polygon points="29,71 48,52 46,50 44,52" />
           
-          {/* West Point - Long */}
-          <polygon points="15,50 40,53 38,50 40,47" />
+          {/* West Point - Long Cardinal */}
+          <polygon points="10,50 42,52 40,50 42,48" />
           
-          {/* Northwest Point - Short */}
-          <polygon points="33,33 44,48 46,50 48,48" />
+          {/* Northwest Point - Short Diagonal */}
+          <polygon points="29,29 44,48 46,50 48,48" />
         </g>
         
         {/* Center Circle */}
         <circle
           cx="50"
           cy="50"
-          r="8"
+          r="6"
           fill={colors.centerCircle}
         />
       </svg>
