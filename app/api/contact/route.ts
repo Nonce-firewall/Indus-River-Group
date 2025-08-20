@@ -98,9 +98,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     return NextResponse.json(
       { 
         success: true, 
-        message: emailResult.success 
-          ? 'Thank you for your message. We will get back to you within 24-48 hours.'
-          : 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
+        message: 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
       },
       { status: 200 }
     );

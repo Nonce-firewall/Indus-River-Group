@@ -67,10 +67,10 @@ export default function Contact() {
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
-    } catch (error) {
+          message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
       setSubmitStatus({
         type: 'error',
-        message: 'Failed to send message. Please try the Google Form below or email us directly.'
+        message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
       });
       console.error('Form submission error:', error);
     } finally {

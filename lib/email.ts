@@ -15,30 +15,27 @@ export async function sendContactEmail(emailData: {
 }) {
   // Check if email credentials are configured
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('Email credentials not configured - form data logged locally');
+    console.log('⚠️  Email credentials not configured in .env.local - form data logged locally only');
+    console.log('📧 To enable email delivery, add GMAIL_USER and GMAIL_APP_PASSWORD to .env.local');
     return { success: false, error: 'Email service not configured' };
   }
 
   let transporter;
   try {
-    // Configure Gmail SMTP transporter with minimal timeout settings
+    // Configure Gmail SMTP transporter with optimized settings
     transporter = createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      service: 'gmail', // Use Gmail service for better compatibility
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
-      tls: {
-        rejectUnauthorized: false
-      },
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 5000, // 5 seconds  
-      socketTimeout: 10000, // 10 seconds
+      // Timeout settings for faster failure detection
+      connectionTimeout: 15000, // 15 seconds
+      greetingTimeout: 10000, // 10 seconds  
+      socketTimeout: 15000, // 15 seconds
     });
   } catch (error) {
-    console.log('SMTP transporter creation failed:', error);
+    console.log('❌ SMTP transporter creation failed:', error);
     return { success: false, error: 'Email service configuration error' };
   }
 
@@ -53,15 +50,17 @@ export async function sendContactEmail(emailData: {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully');
+    console.log('✅ Email sent successfully to:', emailData.to);
+    console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('Email sending failed - form data logged locally');
+    console.log('❌ Email sending failed - form data logged locally only');
+    console.log('🔧 Error details:', error);
     
-    // Always return the same generic error regardless of specific issue
+    // Return generic error for user-facing messages
     return { 
       success: false, 
-      error: 'Email service temporarily unavailable' 
+      error: 'Email delivery failed - check credentials and network connection' 
     };
   }
 }
