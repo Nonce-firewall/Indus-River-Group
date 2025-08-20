@@ -79,13 +79,6 @@ export function logFormSubmission(formData: any) {
   console.log(JSON.stringify(logEntry, null, 2));
   console.log('================================');
 }
-    
-    return { 
-      success: false, 
-      error: 'Email service temporarily unavailable' 
-    };
-  }
-}
 
 // Verify email configuration
 export async function verifyEmailConfig() {
