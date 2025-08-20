@@ -53,7 +53,11 @@ export default function ValueProposition() {
             );
           })}
         </div>
+            )
       </div>
+    }
+    )
+    }
     </section>
   );
 }
