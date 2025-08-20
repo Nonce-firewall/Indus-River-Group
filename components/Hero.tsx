@@ -58,7 +58,7 @@ export default function Hero() {
           <div className="grid grid-cols-2 gap-6 animate-fade-in">
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
               <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="w-6 h-6 text-cerulean" />
+                <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div className="text-2xl font-bold">$1M–$5M</div>
               <div className="text-sm text-gray-300">EBITDA Range</div>
@@ -66,7 +66,7 @@ export default function Hero() {
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
               <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-cerulean" />
+                <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div className="text-2xl font-bold">$3.5M–$50M</div>
               <div className="text-sm text-gray-300">Revenue Range</div>
@@ -74,7 +74,7 @@ export default function Hero() {
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
               <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-6 h-6 text-cerulean" />
+                <Clock className="w-6 h-6 text-white" />
               </div>
               <div className="text-2xl font-bold">Indefinite</div>
               <div className="text-sm text-gray-300">Hold Period</div>
@@ -82,7 +82,7 @@ export default function Hero() {
             
             <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 text-center text-white">
               <div className="w-12 h-12 bg-cerulean bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-6 h-6 text-cerulean" />
+                <Globe className="w-6 h-6 text-white" />
               </div>
               <div className="text-2xl font-bold">US & India</div>
               <div className="text-sm text-gray-300">Geographic Focus</div>
