@@ -43,7 +43,7 @@ export default function Header() {
                 alt="Indus River Group" 
                 className="h-12 w-12 mr-3" 
               />
-              <span className="text-xl font-semibold" style={{color: '#08164F'}}>
+              <span className="text-xl" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 INDUS RIVER
               </span>
             </div>

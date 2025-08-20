@@ -16,7 +16,7 @@ export default function Footer() {
                   alt="Indus River Group" 
                   className="h-10 w-10 mr-3" 
                 />
-                <span className="text-lg font-semibold text-white">
+                <span className="text-lg text-white" style={{fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                   INDUS RIVER
                 </span>
               </div>
