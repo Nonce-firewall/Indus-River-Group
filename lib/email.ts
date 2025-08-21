@@ -14,40 +14,35 @@ export async function sendContactEmail(emailData: {
   }>;
 }) {
   // Check if email credentials are configured
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.log('❌ EMAIL NOT SENT: Gmail credentials not configured');
     console.log('💡 To enable email delivery:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add GMAIL_USER=your-email@yourdomain.com');
-    console.log('   3. Add GMAIL_APP_PASSWORD=your-16-char-app-password');
+    console.log('   2. Add EMAIL_USER=your-email@yourdomain.com');
+    console.log('   3. Add EMAIL_PASS=your-16-char-app-password');
     console.log('   4. Get app password from Google Account → Security → App passwords');
     return { success: false, error: 'Email service not configured' };
   }
 
 
   console.log('📧 Attempting to send email to:', emailData.to);
-  console.log('📧 Using Gmail account:', process.env.GMAIL_USER);
+  console.log('📧 Using Gmail account:', process.env.EMAIL_USER);
 
   try {
     // Configure Gmail SMTP transporter
     const transporter = createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+      service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
       connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000, // 30 seconds
       socketTimeout: 60000, // 60 seconds
-      tls: {
-        rejectUnauthorized: false
-      }
     });
 
     const mailOptions = {
-      from: `"Indus River Group Website" <${process.env.GMAIL_USER}>`,
+      from: `"Indus River Group Website" <${process.env.EMAIL_USER}>`,
       to: emailData.to,
       subject: emailData.subject,
       text: emailData.text,
@@ -88,21 +83,16 @@ export function logFormSubmission(formData: any) {
 
 // Verify email configuration
 export async function verifyEmailConfig() {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    throw new Error('Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env.local');
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    throw new Error('Gmail credentials not configured. Please set EMAIL_USER and EMAIL_PASS in .env.local');
   }
 
   // Create transporter with the same configuration as sendContactEmail
   const transporter = createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
     connectionTimeout: 60000,
     greetingTimeout: 30000,

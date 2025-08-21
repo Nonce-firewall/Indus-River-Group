@@ -89,7 +89,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     // Send email with timeout handling
     const emailData = {
-      to: process.env.GMAIL_USER || 'gaurav@indusrivergroup.com',
+      to: process.env.EMAIL_USER || 'info@indusrivergroup.com',
       subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
       text: emailContent,
       from: email,
