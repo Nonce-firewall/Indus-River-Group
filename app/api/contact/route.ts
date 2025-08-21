@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendContactEmail, logFormSubmission } from '@/lib/email';
 
+// Set a timeout for the API route
+export const maxDuration = 30; // 30 seconds max
 export async function POST(request: NextRequest) {
   try {
+    // Start timing the request
+    const startTime = Date.now();
+    
     const formData = await request.formData();
     
     const name = formData.get('name') as string;
@@ -82,7 +87,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       submittedAt: new Date().toISOString()
     });
 
-    // Send email
+    // Send email with timeout handling
     const emailData = {
       to: process.env.GMAIL_USER || 'gaurav@indusrivergroup.com',
       subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
@@ -92,7 +97,22 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       attachments: attachments
     };
 
-    const emailResult = await sendContactEmail(emailData);
+    // Add timeout wrapper for email sending
+    const emailPromise = sendContactEmail(emailData);
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Email timeout')), 20000) // 20 second timeout
+    );
+    
+    let emailResult;
+    try {
+      emailResult = await Promise.race([emailPromise, timeoutPromise]);
+    } catch (error) {
+      console.log('Email sending timed out or failed:', error);
+      emailResult = { success: false, error: 'Email timeout' };
+    }
+    
+    const processingTime = Date.now() - startTime;
+    console.log(`Form processing completed in ${processingTime}ms`);
     
     // Return different messages based on email success
     if (emailResult.success) {

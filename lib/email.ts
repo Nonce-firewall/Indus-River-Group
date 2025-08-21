@@ -38,9 +38,12 @@ export async function sendContactEmail(emailData: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 30000, // 30 seconds
-      socketTimeout: 60000, // 60 seconds
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000, // 10 seconds
+      socketTimeout: 15000, // 15 seconds
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     const mailOptions = {
