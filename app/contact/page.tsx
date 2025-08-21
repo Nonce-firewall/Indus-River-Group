@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake } from 'lucide-react';
 
 export default function Contact() {
-  const googleFormRef = useRef<HTMLIFrameElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,7 +66,7 @@ export default function Contact() {
       } else if (response.status === 202) {
         // Partial success - form logged but email failed
         setSubmitStatus({
-          type: 'error',
+          type: 'success',
           message: result.message
         });
         // Reset form since it was logged
