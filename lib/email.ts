@@ -25,8 +25,8 @@ export async function sendContactEmail(emailData: {
     // Configure Gmail SMTP transporter with optimized settings
     transporter = createTransport({
       host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
@@ -35,9 +35,9 @@ export async function sendContactEmail(emailData: {
         rejectUnauthorized: false
       },
       // Timeout settings for faster failure detection
-      connectionTimeout: 15000, // 15 seconds
-      greetingTimeout: 10000, // 10 seconds  
-      socketTimeout: 15000, // 15 seconds
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 30000, // 30 seconds  
+      socketTimeout: 60000, // 60 seconds
     });
   } catch (error) {
     console.log('❌ SMTP transporter creation failed:', error);
@@ -93,8 +93,8 @@ export async function verifyEmailConfig() {
   // Create transporter with the same configuration as sendContactEmail
   const transporter = createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
