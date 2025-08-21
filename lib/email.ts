@@ -15,14 +15,30 @@ export async function sendContactEmail(emailData: {
 }) {
   // Check if email credentials are configured
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('⚠️  Email credentials not configured in .env.local - form data logged locally only');
-    console.log('📧 To enable email delivery, add GMAIL_USER and GMAIL_APP_PASSWORD to .env.local');
+    console.log('📝 Email credentials not configured - form data logged locally only');
     return { success: false, error: 'Email service not configured' };
+  }
+
+  // Quick network connectivity check - if this fails, skip email entirely
+  try {
+    // Test basic network connectivity with a very short timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 second timeout
+    
+    await fetch('https://www.google.com', { 
+      signal: controller.signal,
+      method: 'HEAD'
+    });
+    clearTimeout(timeoutId);
+  } catch (networkError) {
+    console.log('📝 Network connectivity issue detected - form data logged locally only');
+    console.log('💡 Email sending disabled due to network restrictions');
+    return { success: false, error: 'Network connectivity issue' };
   }
 
   let transporter;
   try {
-    // Configure Gmail SMTP transporter with optimized settings
+    // Configure Gmail SMTP transporter with very short timeouts
     transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -34,13 +50,13 @@ export async function sendContactEmail(emailData: {
       tls: {
         rejectUnauthorized: false
       },
-      // Timeout settings for faster failure detection
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 30000, // 30 seconds  
-      socketTimeout: 60000, // 60 seconds
+      // Very short timeout settings to fail fast on network issues
+      connectionTimeout: 5000, // 5 seconds
+      greetingTimeout: 3000, // 3 seconds  
+      socketTimeout: 5000, // 5 seconds
     });
   } catch (error) {
-    console.log('❌ SMTP transporter creation failed:', error);
+    console.log('📝 SMTP transporter creation failed - form data logged locally only');
     return { success: false, error: 'Email service configuration error' };
   }
 
@@ -55,17 +71,15 @@ export async function sendContactEmail(emailData: {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully to:', emailData.to);
-    console.log('📧 Message ID:', info.messageId);
+    console.log('📧 Email sent successfully to:', emailData.to);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ Email sending failed - form data logged locally only');
-    console.log('🔧 Error details:', error);
+    console.log('📝 Email sending failed due to network issues - form data logged locally only');
     
     // Return generic error for user-facing messages
     return { 
       success: false, 
-      error: 'Email delivery failed - check credentials and network connection' 
+      error: 'Network connectivity issue' 
     };
   }
 }
