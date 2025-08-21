@@ -15,32 +15,21 @@ export async function sendContactEmail(emailData: {
 }) {
   // Check if email credentials are configured
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('❌ EMAIL NOT SENT: Gmail credentials not configured in .env.local');
-    console.log('💡 Add GMAIL_USER and GMAIL_APP_PASSWORD to .env.local to enable email delivery');
+    console.log('❌ EMAIL NOT SENT: Gmail credentials not configured');
+    console.log('💡 To enable email delivery:');
+    console.log('   1. Create .env.local file in project root');
+    console.log('   2. Add GMAIL_USER=your-gmail@gmail.com');
+    console.log('   3. Add GMAIL_APP_PASSWORD=your-16-char-app-password');
+    console.log('   4. Get app password from Google Account → Security → App passwords');
     return { success: false, error: 'Email service not configured' };
   }
 
-  // Quick network connectivity check to avoid SMTP timeout errors
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
-    
-    await fetch('https://www.google.com', { 
-      signal: controller.signal,
-      method: 'HEAD'
-    });
-    clearTimeout(timeoutId);
-  } catch (networkError) {
-    console.log('📝 EMAIL NOT SENT: Network connectivity issue detected');
-    console.log('📝 Form submission logged locally - check terminal output above');
-    return { success: false, error: 'Network connectivity issue' };
-  }
 
   console.log('📧 Attempting to send email to:', emailData.to);
   console.log('📧 Using Gmail account:', process.env.GMAIL_USER);
 
   try {
-    // Configure Gmail SMTP transporter with minimal timeouts
+    // Configure Gmail SMTP transporter
     const transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -49,14 +38,9 @@ export async function sendContactEmail(emailData: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
-      tls: {
-        rejectUnauthorized: false
-      },
-      // Very short timeouts to fail fast and avoid terminal errors
-      connectionTimeout: 3000, // 3 seconds
-      greetingTimeout: 2000, // 2 seconds  
-      socketTimeout: 3000, // 3 seconds
-      socketTimeout: 30000, // 30 seconds
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 30000, // 30 seconds
+      socketTimeout: 60000, // 60 seconds
     });
 
     const mailOptions = {
@@ -74,12 +58,13 @@ export async function sendContactEmail(emailData: {
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('📝 EMAIL NOT SENT: SMTP connection failed');
+    console.log('❌ EMAIL NOT SENT: SMTP connection failed');
+    console.log('🔧 Error details:', error);
     console.log('📝 Form submission logged locally - check terminal output above');
     
     return { 
       success: false, 
-      error: 'SMTP connection failed' 
+      error: 'Email delivery failed' 
     };
   }
 }
