@@ -100,7 +100,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     // Add timeout wrapper for email sending
     const emailPromise = sendContactEmail(emailData);
     const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Email timeout')), 20000) // 20 second timeout
+      setTimeout(() => reject(new Error('Email timeout')), 29000) // 29 second timeout
     );
     
     let emailResult;
