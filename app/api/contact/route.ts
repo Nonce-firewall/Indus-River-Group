@@ -106,10 +106,10 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     } else {
       return NextResponse.json(
         { 
-          success: true, 
-          message: 'Your message has been received and logged. Due to email configuration issues, please also send a copy directly to gaurav@indusrivergroup.com to ensure we receive it.'
+          success: false, 
+          message: 'Your message has been logged locally, but email delivery failed. Please send your message directly to gaurav@indusrivergroup.com to ensure we receive it promptly.'
         },
-        { status: 200 }
+        { status: 202 }
       );
     }
 

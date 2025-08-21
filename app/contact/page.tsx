@@ -64,6 +64,22 @@ export default function Contact() {
           audienceType: 'business-owner'
         });
         setAttachedFiles([]);
+      } else if (response.status === 202) {
+        // Partial success - form logged but email failed
+        setSubmitStatus({
+          type: 'error',
+          message: result.message
+        });
+        // Reset form since it was logged
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          role: '',
+          message: '',
+          audienceType: 'business-owner'
+        });
+        setAttachedFiles([]);
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
