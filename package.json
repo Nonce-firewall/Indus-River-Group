@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:email": "ts-node test-email.ts"
   },
   "dependencies": {
     "@types/nodemailer": "^7.0.1",

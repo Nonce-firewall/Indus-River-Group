@@ -1,4 +1,4 @@
-const { verifyEmailConfig } = require('./lib/email.ts');
+import { verifyEmailConfig } from './lib/email';
 
 async function testEmailSetup() {
   try {
@@ -7,7 +7,7 @@ async function testEmailSetup() {
     console.log('✅ Email configuration is working correctly!');
     console.log('📧 Contact form emails will be delivered successfully.');
   } catch (error) {
-    console.log('❌ Email configuration issue:', error.message);
+    console.log('❌ Email configuration issue:', (error as Error).message);
     console.log('💡 Please check your .env.local file credentials.');
   }
 }
