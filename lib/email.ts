@@ -20,13 +20,28 @@ export async function sendContactEmail(emailData: {
     return { success: false, error: 'Email service not configured' };
   }
 
+  // Quick network connectivity check to avoid SMTP timeout errors
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    
+    await fetch('https://www.google.com', { 
+      signal: controller.signal,
+      method: 'HEAD'
+    });
+    clearTimeout(timeoutId);
+  } catch (networkError) {
+    console.log('📝 EMAIL NOT SENT: Network connectivity issue detected');
+    console.log('📝 Form submission logged locally - check terminal output above');
+    return { success: false, error: 'Network connectivity issue' };
+  }
+
   console.log('📧 Attempting to send email to:', emailData.to);
   console.log('📧 Using Gmail account:', process.env.GMAIL_USER);
 
-  let transporter;
   try {
-    // Configure Gmail SMTP transporter
-    transporter = createTransport({
+    // Configure Gmail SMTP transporter with minimal timeouts
+    const transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
@@ -37,18 +52,13 @@ export async function sendContactEmail(emailData: {
       tls: {
         rejectUnauthorized: false
       },
-      // Reasonable timeout settings
-      connectionTimeout: 30000, // 30 seconds
-      greetingTimeout: 15000, // 15 seconds  
+      // Very short timeouts to fail fast and avoid terminal errors
+      connectionTimeout: 3000, // 3 seconds
+      greetingTimeout: 2000, // 2 seconds  
+      socketTimeout: 3000, // 3 seconds
       socketTimeout: 30000, // 30 seconds
     });
-  } catch (error) {
-    console.log('❌ EMAIL NOT SENT: SMTP transporter creation failed');
-    console.error('🔧 Error details:', error);
-    return { success: false, error: 'Email service configuration error' };
-  }
 
-  try {
     const mailOptions = {
       from: `"Indus River Group Website" <${process.env.GMAIL_USER}>`,
       to: emailData.to,
@@ -64,21 +74,12 @@ export async function sendContactEmail(emailData: {
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ EMAIL NOT SENT: Email sending failed');
-    console.error('🔧 Error details:', error);
-    
-    // Check for specific error types
-    if (error instanceof Error) {
-      if (error.message.includes('Invalid login')) {
-        console.log('💡 Check your Gmail App Password - it may be incorrect');
-      } else if (error.message.includes('ETIMEDOUT') || error.message.includes('Greeting never received')) {
-        console.log('💡 Network connectivity issue - check firewall/proxy settings');
-      }
-    }
+    console.log('📝 EMAIL NOT SENT: SMTP connection failed');
+    console.log('📝 Form submission logged locally - check terminal output above');
     
     return { 
       success: false, 
-      error: 'Email delivery failed' 
+      error: 'SMTP connection failed' 
     };
   }
 }
