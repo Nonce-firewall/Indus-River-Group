@@ -94,14 +94,24 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     const emailResult = await sendContactEmail(emailData);
     
-    // Always return success to user regardless of email status
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
-      },
-      { status: 200 }
-    );
+    // Return different messages based on email success
+    if (emailResult.success) {
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
+        },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Your message has been received and logged. Due to email configuration issues, please also send a copy directly to gaurav@indusrivergroup.com to ensure we receive it.'
+        },
+        { status: 200 }
+      );
+    }
 
   } catch (error) {
     console.log('Contact form processing error:', error);
