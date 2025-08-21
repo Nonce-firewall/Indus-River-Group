@@ -18,7 +18,7 @@ export async function sendContactEmail(emailData: {
     console.log('❌ EMAIL NOT SENT: Gmail credentials not configured');
     console.log('💡 To enable email delivery:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add GMAIL_USER=your-gmail@gmail.com');
+    console.log('   2. Add GMAIL_USER=your-email@yourdomain.com');
     console.log('   3. Add GMAIL_APP_PASSWORD=your-16-char-app-password');
     console.log('   4. Get app password from Google Account → Security → App passwords');
     return { success: false, error: 'Email service not configured' };
