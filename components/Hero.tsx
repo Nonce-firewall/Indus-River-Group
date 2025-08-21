@@ -16,7 +16,7 @@ export default function Hero() {
           <div className="text-white space-y-8 animate-fade-in-up">
             <div className="flex items-center mb-6">
               <img 
-                src="/Indus River logo alone.png" 
+                src="/Indus%20River%20logo%20alone.png" 
                 alt="Indus River Group" 
                 className="h-20 w-20 mr-5" 
               />

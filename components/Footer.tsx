@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="mb-4">
               <div className="flex items-center">
                 <img 
-                  src="/Indus River logo alone.png" 
+                  src="/Indus%20River%20logo%20alone.png" 
                   alt="Indus River Group" 
                   className="h-12 w-12 mr-4" 
                 />

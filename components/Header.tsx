@@ -39,7 +39,7 @@ export default function Header() {
           <Link href="/" className="group">
             <div className="flex items-center">
               <img 
-                src="/Indus River logo alone.png" 
+                src="/Indus%20River%20logo%20alone.png" 
                 alt="Indus River Group" 
                 className="h-16 w-16 mr-4" 
               />
