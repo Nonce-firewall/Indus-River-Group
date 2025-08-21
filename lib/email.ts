@@ -24,10 +24,15 @@ export async function sendContactEmail(emailData: {
   try {
     // Configure Gmail SMTP transporter with optimized settings
     transporter = createTransport({
-      service: 'gmail', // Use Gmail service for better compatibility
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false
       },
       // Timeout settings for faster failure detection
       connectionTimeout: 15000, // 15 seconds

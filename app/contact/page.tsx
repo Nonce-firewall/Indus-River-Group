@@ -67,7 +67,7 @@ export default function Contact() {
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
-          message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
+    } catch (error: any) {
       setSubmitStatus({
         type: 'error',
         message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
