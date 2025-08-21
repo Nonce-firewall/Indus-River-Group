@@ -22,11 +22,13 @@ export default function Contact() {
     message: string;
   }>({ type: null, message: '' });
   const [isDragOver, setIsDragOver] = useState(false);
+  const [submitProgress, setSubmitProgress] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
+    setSubmitProgress('Preparing your message...');
 
     try {
       const formDataWithFiles = new FormData();
@@ -41,10 +43,19 @@ export default function Contact() {
         formDataWithFiles.append(`attachment_${index}`, file);
       });
 
+      setSubmitProgress('Sending your message...');
+      
+      // Add timeout to the fetch request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         body: formDataWithFiles,
+        signal: controller.signal,
       });
+      
+      clearTimeout(timeoutId);
 
       const result = await response.json();
 
@@ -83,13 +94,21 @@ export default function Contact() {
         throw new Error(result.error || 'Failed to send message');
       }
     } catch (error: any) {
-      setSubmitStatus({
-        type: 'error',
-        message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
-      });
+      if (error.name === 'AbortError') {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Request timed out. Your message has been logged locally. Please email us directly at info@indusrivergroup.com if urgent.'
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Failed to send message. Please email us directly at info@indusrivergroup.com'
+        });
+      }
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
+      setSubmitProgress('');
     }
   };
 
@@ -435,8 +454,13 @@ export default function Contact() {
                   disabled={isSubmitting}
                   className={`btn-primary ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (submitProgress || 'Sending...') : 'Send Message'}
                 </button>
+                {isSubmitting && (
+                  <p className="text-sm text-gray-500 mt-2">
+                    This may take a few moments...
+                  </p>
+                )}
               </div>
             </form>
 
