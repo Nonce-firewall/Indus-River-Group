@@ -84,7 +84,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     // Send email
     const emailData = {
-      to: process.env.GMAIL_USER || 'info@indusrivergroup.com',
+      to: process.env.GMAIL_USER || 'gaurav@indusrivergroup.com',
       subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
       text: emailContent,
       from: email,
