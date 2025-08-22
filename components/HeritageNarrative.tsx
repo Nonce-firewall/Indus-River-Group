@@ -1,4 +1,4 @@
-import { Navigation, Mountain, TrendingUp } from 'lucide-react';
+import { Navigation, Waves, TrendingUp } from 'lucide-react';
 
 export default function HeritageNarrative() {
   return (
@@ -31,7 +31,7 @@ export default function HeritageNarrative() {
           {/* River Wisdom */}
           <div className="text-center space-y-6">
             <div className="w-20 h-20 bg-cerulean rounded-full flex items-center justify-center mx-auto">
-              <Mountain className="w-10 h-10 text-white" />
+              <Waves className="w-10 h-10 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-cerulean">Flow & Guidance</h3>
             <p className="text-charcoal-grey leading-relaxed">

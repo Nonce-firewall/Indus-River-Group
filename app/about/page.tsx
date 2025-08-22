@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Navigation, Mountain, TrendingUp, Shield, Heart, Handshake, Users } from 'lucide-react';
+import { Navigation, Waves, TrendingUp, Shield, Heart, Handshake, Users } from 'lucide-react';
 
 export default function About() {
   return (
@@ -50,7 +50,7 @@ export default function About() {
             {/* River Wisdom */}
             <div className="space-y-6">
               <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center">
-                <Mountain className="w-8 h-8 text-white" />
+                <Waves className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-cerulean">
                 River Guidance
