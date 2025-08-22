@@ -1,4 +1,4 @@
-const { sendContactEmail } = require('./lib/email.ts');
+import { sendContactEmail } from './lib/email';
 
 async function testEmailIntegration() {
   console.log('🧪 Testing Email Integration');

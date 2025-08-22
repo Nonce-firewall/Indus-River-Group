@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:email": "ts-node test-email.ts",
+    "test:email-integration": "ts-node test-email-integration.ts",
     "view:submissions": "node view-submissions.js"
   },
   "dependencies": {
