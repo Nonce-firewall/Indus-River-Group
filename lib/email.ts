@@ -41,7 +41,7 @@ export async function sendContactEmail(emailData: {
         pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
       connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 28000, // 28 seconds
+      greetingTimeout: 60000, // 60 seconds
       socketTimeout: 60000, // 60 seconds
     });
 
