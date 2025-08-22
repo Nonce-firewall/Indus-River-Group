@@ -76,9 +76,20 @@ export function logFormSubmission(formData: any) {
     data: formData
   };
   
-  console.log('=== CONTACT FORM SUBMISSION ===');
-  console.log(JSON.stringify(logEntry, null, 2));
-  console.log('================================');
+  console.log('\n🔔 NEW CONTACT FORM SUBMISSION');
+  console.log('=====================================');
+  console.log(`📅 Time: ${new Date().toLocaleString()}`);
+  console.log(`👤 Name: ${formData.name}`);
+  console.log(`📧 Email: ${formData.email}`);
+  console.log(`🏢 Company: ${formData.company || 'Not provided'}`);
+  console.log(`💼 Role: ${formData.role || 'Not provided'}`);
+  console.log(`📋 Type: ${formData.audienceType}`);
+  console.log(`💬 Message: ${formData.message}`);
+  if (formData.attachmentCount > 0) {
+    console.log(`📎 Attachments: ${formData.attachmentCount} files`);
+    console.log(`   Files: ${formData.attachmentNames?.join(', ')}`);
+  }
+  console.log('=====================================\n');
 }
 
 // Verify email configuration
