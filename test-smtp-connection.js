@@ -20,7 +20,7 @@ async function testGoogleWorkspaceConnection() {
   
   // Create transporter with same settings as production
   console.log('\n2. Creating SMTP transporter...');
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
