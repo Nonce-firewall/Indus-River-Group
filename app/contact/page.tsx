@@ -47,7 +47,7 @@ export default function Contact() {
       
       // Add timeout to the fetch request
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 35000); // 35 second timeout
       
       const response = await fetch('/api/contact', {
         method: 'POST',
