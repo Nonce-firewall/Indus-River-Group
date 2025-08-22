@@ -40,9 +40,9 @@ export async function sendContactEmail(emailData: {
         user: process.env.ADMIN_EMAIL_USER,
         pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 60000, // 60 seconds
-      socketTimeout: 60000, // 60 seconds
+      connectionTimeout: 25000, // 25 seconds
+      greetingTimeout: 25000, // 25 seconds
+      socketTimeout: 25000, // 25 seconds
     });
 
     const mailOptions = {
@@ -136,8 +136,8 @@ export async function verifyEmailConfig() {
       pass: process.env.ADMIN_EMAIL_PASSWORD,
     },
     connectionTimeout: 60000,
-    greetingTimeout: 28000,
-    socketTimeout: 60000,
+    greetingTimeout: 25000,
+    socketTimeout: 25000,
   });
 
   try {
