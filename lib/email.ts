@@ -1,4 +1,6 @@
 import { createTransport } from 'nodemailer';
+import { writeFileSync, existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 
 // Email service for sending contact form submissions
 export async function sendContactEmail(emailData: {
@@ -75,6 +77,29 @@ export function logFormSubmission(formData: any) {
     type: 'contact_form_submission',
     data: formData
   };
+  
+  // Save to JSON file for easy retrieval
+  const logFilePath = join(process.cwd(), 'contact-submissions.json');
+  
+  let existingLogs = [];
+  if (existsSync(logFilePath)) {
+    try {
+      const fileContent = readFileSync(logFilePath, 'utf8');
+      existingLogs = JSON.parse(fileContent);
+    } catch (error) {
+      console.log('Error reading existing logs, starting fresh');
+      existingLogs = [];
+    }
+  }
+  
+  existingLogs.push(logEntry);
+  
+  try {
+    writeFileSync(logFilePath, JSON.stringify(existingLogs, null, 2));
+    console.log(`✅ Form submission saved to: ${logFilePath}`);
+  } catch (error) {
+    console.log('❌ Failed to save form submission to file:', error);
+  }
   
   console.log('\n🔔 NEW CONTACT FORM SUBMISSION');
   console.log('=====================================');

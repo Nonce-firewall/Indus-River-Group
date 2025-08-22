@@ -28,6 +28,9 @@ yarn-error.log*
 .env
 .env*.local
 
+# Contact form submissions (contains sensitive data)
+contact-submissions.json
+
 # vercel
 .vercel
 
