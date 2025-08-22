@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendContactEmail, logFormSubmission } from '@/lib/email';
 
-// Set a timeout for the API route
-export const maxDuration = 30; // 30 seconds max
 export async function POST(request: NextRequest) {
   try {
-    // Start timing the request
-    const startTime = Date.now();
-    
     const formData = await request.formData();
     
     const name = formData.get('name') as string;
@@ -87,7 +82,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       submittedAt: new Date().toISOString()
     });
 
-    // Send email with timeout handling
+    // Send email asynchronously without blocking the response
     const emailData = {
       to: 'info@indusrivergroup.com',
       subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
@@ -97,41 +92,19 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       attachments: attachments
     };
 
-    // Add timeout wrapper for email sending
-    const emailPromise = sendContactEmail(emailData);
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Email timeout')), 29000) // 29 second timeout
+    // Send email in background without waiting
+    sendContactEmail(emailData).catch(error => {
+      console.log('Background email sending failed:', error);
+    });
+
+    // Return immediate success response
+    return NextResponse.json(
+      { 
+        success: true, 
+        message: 'Thank you for your message! We have received your inquiry and will get back to you within 24-48 hours.'
+      },
+      { status: 200 }
     );
-    
-    let emailResult;
-    try {
-      emailResult = await Promise.race([emailPromise, timeoutPromise]);
-    } catch (error) {
-      console.log('Email sending timed out or failed:', error);
-      emailResult = { success: false, error: 'Email timeout' };
-    }
-    
-    const processingTime = Date.now() - startTime;
-    console.log(`Form processing completed in ${processingTime}ms`);
-    
-    // Return different messages based on email success
-    if (emailResult.success) {
-      return NextResponse.json(
-        { 
-          success: true, 
-          message: 'Thank you for your message! We have received your inquiry and will get back to you within 24-48 hours.'
-        },
-        { status: 200 }
-      );
-    } else {
-      return NextResponse.json(
-        { 
-          success: true, 
-          message: 'Thank you for your message! Your inquiry has been received and logged. We will get back to you within 24-48 hours. For urgent matters, you can also email us directly at info@indusrivergroup.com.'
-        },
-        { status: 200 }
-      );
-    }
 
   } catch (error) {
     console.log('Contact form processing error:', error);

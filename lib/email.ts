@@ -43,6 +43,9 @@ export async function sendContactEmail(emailData: {
       connectionTimeout: 25000, // 25 seconds
       greetingTimeout: 25000, // 25 seconds
       socketTimeout: 25000, // 25 seconds
+      pool: true, // Use connection pooling
+      maxConnections: 1,
+      maxMessages: 3,
     });
 
     const mailOptions = {
