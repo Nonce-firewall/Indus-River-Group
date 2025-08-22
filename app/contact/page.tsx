@@ -275,7 +275,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-indus-blue mb-1">
+                  <h3 className="text-sm font-medium text-charcoal-grey mb-1">
                     Multiple Ways to Reach Us
                   </h3>
                   <p className="text-sm text-charcoal-grey">
