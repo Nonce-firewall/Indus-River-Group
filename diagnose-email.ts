@@ -10,56 +10,53 @@ async function diagnoseEmailIssues() {
   
   // Step 1: Check environment variables
   console.log('\n1. CHECKING ENVIRONMENT VARIABLES:');
-  console.log('GMAIL_USER:', process.env.GMAIL_USER ? '✅ Set' : '❌ Missing');
-  console.log('GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? '✅ Set' : '❌ Missing');
+  console.log('ADMIN_EMAIL_USER:', process.env.ADMIN_EMAIL_USER ? '✅ Set' : '❌ Missing');
+  console.log('ADMIN_EMAIL_PASSWORD:', process.env.ADMIN_EMAIL_PASSWORD ? '✅ Set' : '❌ Missing');
   
-  if (process.env.GMAIL_USER) {
-    console.log('Email address:', process.env.GMAIL_USER);
+  if (process.env.ADMIN_EMAIL_USER) {
+    console.log('Admin email address:', process.env.ADMIN_EMAIL_USER);
   }
   
-  if (process.env.GMAIL_APP_PASSWORD) {
-    console.log('App password length:', process.env.GMAIL_APP_PASSWORD.length, 'characters');
-    console.log('App password format:', /^[a-z]{16}$/.test(process.env.GMAIL_APP_PASSWORD) ? '✅ Correct format' : '⚠️  Should be 16 lowercase letters');
+  if (process.env.ADMIN_EMAIL_PASSWORD) {
+    console.log('App password length:', process.env.ADMIN_EMAIL_PASSWORD.length, 'characters');
+    console.log('App password format:', /^[a-z]{16}$/.test(process.env.ADMIN_EMAIL_PASSWORD) ? '✅ Correct format' : '⚠️  Should be 16 lowercase letters');
   }
   
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  if (!process.env.ADMIN_EMAIL_USER || !process.env.ADMIN_EMAIL_PASSWORD) {
     console.log('\n❌ MISSING CREDENTIALS - Cannot proceed with email test');
     return;
   }
   
-  // Step 2: Test SMTP connection
-  console.log('\n2. TESTING SMTP CONNECTION:');
+  // Step 2: Test Google Workspace SMTP connection
+  console.log('\n2. TESTING GOOGLE WORKSPACE SMTP CONNECTION:');
   
   const transporter = createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
+      user: process.env.ADMIN_EMAIL_USER,
+      pass: process.env.ADMIN_EMAIL_PASSWORD,
     },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 15000,
-    tls: {
-      rejectUnauthorized: false
-    }
   });
   
   try {
-    console.log('Connecting to Gmail SMTP server...');
+    console.log('Connecting to Google Workspace SMTP server...');
     await transporter.verify();
-    console.log('✅ SMTP CONNECTION SUCCESSFUL');
+    console.log('✅ GOOGLE WORKSPACE SMTP CONNECTION SUCCESSFUL');
   } catch (error: any) {
-    console.log('❌ SMTP CONNECTION FAILED');
+    console.log('❌ GOOGLE WORKSPACE SMTP CONNECTION FAILED');
     console.log('Error:', error.message);
     
     // Provide specific troubleshooting advice
     if (error.message.includes('Invalid login')) {
       console.log('\n🔧 TROUBLESHOOTING:');
-      console.log('- Check that your Gmail address is correct');
+      console.log('- Check that your Google Workspace admin email is correct');
       console.log('- Verify your app password is correct (16 characters)');
-      console.log('- Make sure 2-factor authentication is enabled on your Google account');
+      console.log('- Make sure 2-factor authentication is enabled on your Google Workspace account');
       console.log('- Generate a new app password if needed');
     } else if (error.message.includes('ETIMEDOUT') || error.message.includes('timeout')) {
       console.log('\n🔧 TROUBLESHOOTING:');
@@ -75,17 +72,17 @@ async function diagnoseEmailIssues() {
   
   try {
     const testEmail = {
-      from: `"Test Email" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER, // Send to yourself
+      from: `"Test Email" <${process.env.ADMIN_EMAIL_USER}>`,
+      to: 'info@indusrivergroup.com', // Send to group email
       subject: 'Test Email from Indus River Group Website',
       text: `This is a test email sent at ${new Date().toISOString()}\n\nIf you receive this, your email configuration is working correctly!`,
     };
     
-    console.log('Sending test email to:', testEmail.to);
+    console.log('Sending test email to group email:', testEmail.to);
     const info = await transporter.sendMail(testEmail);
     console.log('✅ TEST EMAIL SENT SUCCESSFULLY');
     console.log('Message ID:', info.messageId);
-    console.log('📧 Check your inbox for the test email');
+    console.log('📧 All group members should receive the test email');
     
   } catch (error: any) {
     console.log('❌ TEST EMAIL FAILED');

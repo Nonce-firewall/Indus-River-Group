@@ -16,27 +16,29 @@ export async function sendContactEmail(emailData: {
   }>;
 }) {
   // Check if email credentials are configured
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('❌ EMAIL NOT SENT: Gmail credentials not configured');
+  if (!process.env.ADMIN_EMAIL_USER || !process.env.ADMIN_EMAIL_PASSWORD) {
+    console.log('❌ EMAIL NOT SENT: Admin email credentials not configured');
     console.log('💡 To enable email delivery:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add GMAIL_USER=your-personal-gmail@gmail.com');
-    console.log('   3. Add GMAIL_APP_PASSWORD=your-16-char-app-password');
-    console.log('   4. Get app password from your personal Gmail account');
+    console.log('   2. Add ADMIN_EMAIL_USER=rohin@indusrivergroup.com');
+    console.log('   3. Add ADMIN_EMAIL_PASSWORD=your-16-char-app-password');
+    console.log('   4. Get app password from Google Workspace admin console');
     return { success: false, error: 'Email service not configured' };
   }
 
 
-  console.log('📧 Attempting to send contact form submission to:', emailData.to);
-  console.log('📧 Using Gmail account:', process.env.GMAIL_USER);
+  console.log('📧 Sending contact form submission to group email:', emailData.to);
+  console.log('📧 Using admin account:', process.env.ADMIN_EMAIL_USER);
 
   try {
-    // Configure Gmail SMTP transporter
+    // Configure Google Workspace SMTP transporter
     const transporter = createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.ADMIN_EMAIL_USER,
+        pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
       connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000, // 30 seconds
@@ -44,7 +46,7 @@ export async function sendContactEmail(emailData: {
     });
 
     const mailOptions = {
-      from: `"Indus River Group Contact Form" <${process.env.GMAIL_USER}>`,
+      from: `"Indus River Group Contact Form" <${process.env.ADMIN_EMAIL_USER}>`,
       to: emailData.to,
       subject: emailData.subject,
       text: emailData.text,
@@ -54,11 +56,12 @@ export async function sendContactEmail(emailData: {
 
     console.log('📧 Sending email with subject:', emailData.subject);
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to:', emailData.to);
+    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to group email:', emailData.to);
+    console.log('📧 All group members will receive this submission');
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ CONTACT FORM EMAIL NOT SENT: SMTP connection failed');
+    console.log('❌ CONTACT FORM EMAIL NOT SENT: Google Workspace SMTP connection failed');
     console.log('🔧 Error details:', error);
     console.log('📝 Form submission logged locally - check terminal output above');
     
@@ -119,16 +122,18 @@ export function logFormSubmission(formData: any) {
 
 // Verify email configuration
 export async function verifyEmailConfig() {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    throw new Error('Gmail credentials not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env.local');
+  if (!process.env.ADMIN_EMAIL_USER || !process.env.ADMIN_EMAIL_PASSWORD) {
+    throw new Error('Admin email credentials not configured. Please set ADMIN_EMAIL_USER and ADMIN_EMAIL_PASSWORD in .env.local');
   }
 
-  // Create transporter with the same configuration as sendContactEmail
+  // Create Google Workspace transporter with the same configuration as sendContactEmail
   const transporter = createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
+      user: process.env.ADMIN_EMAIL_USER,
+      pass: process.env.ADMIN_EMAIL_PASSWORD,
     },
     connectionTimeout: 60000,
     greetingTimeout: 30000,
@@ -137,17 +142,17 @@ export async function verifyEmailConfig() {
 
   try {
     await transporter.verify();
-    console.log('Email configuration verified successfully');
+    console.log('Google Workspace email configuration verified successfully');
     return true;
   } catch (error) {
     console.error('Email configuration verification failed:', error);
     // Provide more specific error messages
     if (error instanceof Error) {
       if (error.message.includes('ETIMEDOUT') || error.message.includes('Greeting never received')) {
-        throw new Error('Unable to connect to Gmail SMTP server. Please check your internet connection and ensure Gmail credentials are correct.');
+        throw new Error('Unable to connect to Google Workspace SMTP server. Please check your internet connection and ensure admin email credentials are correct.');
       }
       if (error.message.includes('Invalid login')) {
-        throw new Error('Gmail authentication failed. Please verify your email and app password are correct.');
+        throw new Error('Google Workspace authentication failed. Please verify your admin email and app password are correct.');
       }
     }
     throw new Error(`Email configuration error: ${error}`);
