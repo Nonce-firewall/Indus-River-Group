@@ -18,17 +18,17 @@ export async function sendContactEmail(emailData: {
   // Check if email credentials are configured
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.log('❌ EMAIL NOT SENT: Gmail credentials not configured');
-    console.log('💡 To enable email delivery:');
+    console.log('💡 To enable email delivery for info@indusrivergroup.com:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add EMAIL_USER=your-email@yourdomain.com');
+    console.log('   2. Add EMAIL_USER=info@indusrivergroup.com');
     console.log('   3. Add EMAIL_PASS=your-16-char-app-password');
-    console.log('   4. Get app password from Google Account → Security → App passwords');
+    console.log('   4. Get app password from Google Workspace Admin → Security → App passwords');
     return { success: false, error: 'Email service not configured' };
   }
 
 
-  console.log('📧 Attempting to send email to:', emailData.to);
-  console.log('📧 Using Gmail account:', process.env.EMAIL_USER);
+  console.log('📧 Attempting to send contact form submission to:', emailData.to);
+  console.log('📧 Using Google Workspace account:', process.env.EMAIL_USER);
 
   try {
     // Configure Gmail SMTP transporter
@@ -44,7 +44,7 @@ export async function sendContactEmail(emailData: {
     });
 
     const mailOptions = {
-      from: `"Indus River Group Website" <${process.env.EMAIL_USER}>`,
+      from: `"Indus River Group Contact Form" <${process.env.EMAIL_USER}>`,
       to: emailData.to,
       subject: emailData.subject,
       text: emailData.text,
@@ -54,11 +54,11 @@ export async function sendContactEmail(emailData: {
 
     console.log('📧 Sending email with subject:', emailData.subject);
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ EMAIL SENT SUCCESSFULLY to:', emailData.to);
+    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to:', emailData.to);
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ EMAIL NOT SENT: SMTP connection failed');
+    console.log('❌ CONTACT FORM EMAIL NOT SENT: SMTP connection failed');
     console.log('🔧 Error details:', error);
     console.log('📝 Form submission logged locally - check terminal output above');
     
