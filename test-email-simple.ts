@@ -1,5 +1,7 @@
-const { sendContactEmail } = require('./lib/email');
-require('dotenv').config({ path: '.env.local' });
+import { sendContactEmail } from './lib/email';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
 
 async function testEmailIntegration() {
   console.log('🧪 Testing Email Integration');
@@ -51,7 +53,7 @@ All group members should receive this test message.
     
   } catch (error) {
     console.log('❌ TEST FAILED WITH ERROR');
-    console.log('Error details:', error.message);
+    console.log('Error details:', (error as Error).message);
     
     // Provide troubleshooting tips
     console.log('\n🔧 TROUBLESHOOTING TIPS:');
