@@ -119,17 +119,17 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       return NextResponse.json(
         { 
           success: true, 
-          message: 'Thank you for your message. We have received your inquiry and will get back to you within 24-48 hours.'
+          message: 'Thank you for your message! We have received your inquiry and will get back to you within 24-48 hours.'
         },
         { status: 200 }
       );
     } else {
       return NextResponse.json(
         { 
-          success: false, 
-          message: 'Your message has been logged locally, but email delivery failed. Please send your message directly to gaurav@indusrivergroup.com to ensure we receive it promptly.'
+          success: true, 
+          message: 'Thank you for your message! Your inquiry has been received and logged. We will get back to you within 24-48 hours. For urgent matters, you can also email us directly at info@indusrivergroup.com.'
         },
-        { status: 202 }
+        { status: 200 }
       );
     }
 

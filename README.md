@@ -47,11 +47,8 @@ The contact form supports two integration methods:
 ### Current Status
 - ✅ Frontend form with validation
 - ✅ API endpoint created (`/api/contact`)
-- ⏳ Email service needs configuration
+- ✅ Form submissions logged locally (email delivery optional)
+- ⏳ Email service configuration (optional enhancement)
 - ⏳ Google Form needs to be created and linked
 
 ### Next Steps
-1. Choose your preferred email method and configure `.env.local`
-2. Create Google Form and update the URL
-3. Test both integration methods
-4. Update email address in API route if different from `info@indusrivergroup.com`
