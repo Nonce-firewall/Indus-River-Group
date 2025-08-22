@@ -17,8 +17,8 @@ export default function HeritageNarrative() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Archaeological Legacy */}
           <div className="text-center space-y-6">
-            <div className="w-20 h-20 bg-indus-blue rounded-full flex items-center justify-center mx-auto">
-              <Navigation className="w-10 h-10 text-white" />
+            <div className="w-16 h-16 bg-indus-blue rounded-full flex items-center justify-center mx-auto">
+              <Navigation className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-indus-blue">Discovery & Patience</h3>
             <p className="text-charcoal-grey leading-relaxed">
@@ -30,8 +30,8 @@ export default function HeritageNarrative() {
 
           {/* River Wisdom */}
           <div className="text-center space-y-6">
-            <div className="w-20 h-20 bg-cerulean rounded-full flex items-center justify-center mx-auto">
-              <Waves className="w-10 h-10 text-white" />
+            <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+              <Waves className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-cerulean">Flow & Guidance</h3>
             <p className="text-charcoal-grey leading-relaxed">
@@ -43,8 +43,8 @@ export default function HeritageNarrative() {
 
           {/* Modern Application */}
           <div className="text-center space-y-6">
-            <div className="w-20 h-20 bg-warm-grey rounded-full flex items-center justify-center mx-auto">
-              <TrendingUp className="w-10 h-10 text-white" />
+            <div className="w-16 h-16 bg-warm-grey rounded-full flex items-center justify-center mx-auto">
+              <TrendingUp className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-semibold text-warm-grey">Stewardship & Growth</h3>
             <p className="text-charcoal-grey leading-relaxed">
