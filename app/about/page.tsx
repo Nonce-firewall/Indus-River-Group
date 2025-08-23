@@ -8,7 +8,7 @@ export default function About() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-indus-blue mb-6">
@@ -23,7 +23,7 @@ export default function About() {
       </section>
 
       {/* Heritage Story */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             {/* Archaeological Discovery */}
@@ -93,7 +93,7 @@ export default function About() {
       </section>
 
       {/* Mission Statement */}
-      <section className="py-20 bg-indus-blue text-white">
+      <section className="py-16 bg-indus-blue text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">Our Mission</h2>
@@ -108,7 +108,7 @@ export default function About() {
       </section>
 
       {/* Key Differentiators */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-indus-blue text-center mb-16">
             What Sets Us Apart

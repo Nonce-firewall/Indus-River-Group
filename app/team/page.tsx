@@ -9,7 +9,7 @@ export default function Team() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-indus-blue mb-6">
             Our Team
@@ -22,7 +22,7 @@ export default function Team() {
       </section>
 
       {/* Team Members */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Gaurav Lal */}
@@ -136,7 +136,7 @@ export default function Team() {
       </section>
 
       {/* Advisory Network */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-6">

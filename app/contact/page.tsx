@@ -10,7 +10,7 @@ export default function Contact() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-28 pb-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-indus-blue mb-6">
             Start a Conversation
@@ -24,7 +24,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Business Owners */}
@@ -91,7 +91,7 @@ export default function Contact() {
       </section>
 
       {/* Direct Contact */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-indus-blue text-center mb-12">
             Direct Contact
