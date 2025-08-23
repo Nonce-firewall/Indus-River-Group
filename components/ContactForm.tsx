@@ -50,7 +50,7 @@ export default function ContactForm() {
       {submitStatus === 'success' && (
         <div className="bg-green-50 border border-green-200 rounded-md p-4">
           <p className="text-green-800 font-medium">
-            ✓ Thank you! Your message has been sent successfully.
+            ✓ Thank you! Your message has been sent to gaurav@indusrivergroup.com successfully.
           </p>
         </div>
       )}

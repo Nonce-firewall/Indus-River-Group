@@ -28,7 +28,7 @@ export async function sendContactEmail(emailData: {
 
 
   console.log('📧 Sending contact form submission TO:', emailData.to);
-  console.log('📧 Sending FROM Google Workspace account:', process.env.ADMIN_EMAIL_USER);
+  console.log('📧 Authenticating with Google Workspace account:', process.env.ADMIN_EMAIL_USER);
 
   try {
     // Configure Google Workspace SMTP transporter
@@ -60,7 +60,7 @@ export async function sendContactEmail(emailData: {
     console.log('📧 Sending email with subject:', emailData.subject);
     const info = await transporter.sendMail(mailOptions);
     console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY');
-    console.log('📧 FROM:', process.env.ADMIN_EMAIL_USER);
+    console.log('📧 AUTHENTICATED WITH:', process.env.ADMIN_EMAIL_USER);
     console.log('📧 TO:', emailData.to);
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };

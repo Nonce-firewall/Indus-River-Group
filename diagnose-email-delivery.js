@@ -78,7 +78,7 @@ async function diagnoseEmailDelivery() {
     const info = await transporter.sendMail(testEmail);
     console.log('✅ TEST EMAIL SENT SUCCESSFULLY!');
     console.log('Message ID:', info.messageId);
-    console.log('📧 Check gaurav@indusrivergroup.com inbox for the test email');
+    console.log('📧 Check gaurav@indusrivergroup.com inbox for the test email (will auto-forward to info@indusrivergroup.com)');
     
   } catch (error) {
     console.log('❌ TEST EMAIL FAILED');
@@ -89,7 +89,7 @@ async function diagnoseEmailDelivery() {
   console.log('🏁 DIAGNOSIS COMPLETE');
   console.log('\nIf the test email was sent successfully but you still don\'t receive contact form emails:');
   console.log('1. Check spam/junk folder');
-  console.log('2. Verify gaurav@indusrivergroup.com is the correct email');
+  console.log('2. Verify gaurav@indusrivergroup.com auto-forward filter is working');
   console.log('3. Try submitting the contact form again');
 }
 

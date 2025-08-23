@@ -47,7 +47,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     // Send email asynchronously without blocking the response
     const emailData = {
-      to: 'info@indusrivergroup.com', // Group email that distributes to all members
+      to: 'gaurav@indusrivergroup.com', // Direct to Gaurav who will setup auto-forward
       subject: 'New Contact Form Submission',
       text: emailContent,
       from: email,

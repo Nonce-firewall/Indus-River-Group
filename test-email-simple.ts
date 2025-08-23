@@ -21,7 +21,7 @@ async function testEmailIntegration() {
     console.log('📧 Sending test email to info@indusrivergroup.com...');
     
     const testEmailData = {
-      to: 'info@indusrivergroup.com',
+      to: 'gaurav@indusrivergroup.com',
       subject: 'Test Contact Form Submission - Email Integration Test',
       text: `
 This is a test email from the Indus River Group contact form integration.
@@ -44,7 +44,7 @@ All group members should receive this test message.
     if (result.success) {
       console.log('✅ TEST EMAIL SENT SUCCESSFULLY!');
       console.log('📧 Message ID:', result.messageId);
-      console.log('📬 Check all group member inboxes for the test email');
+      console.log('📬 Check gaurav@indusrivergroup.com inbox for the test email');
       console.log('🎉 Email integration is working correctly!');
     } else {
       console.log('❌ TEST EMAIL FAILED');
