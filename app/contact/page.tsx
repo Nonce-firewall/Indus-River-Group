@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ContactForm from '@/components/ContactForm';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake } from 'lucide-react';
 
 export default function Contact() {
@@ -92,19 +90,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-indus-blue mb-8 text-center">
-              Get in Touch
-            </h2>
-            
-            <ContactForm />
-          </div>
-        </div>
-      </section>
-
       {/* Direct Contact */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,7 +103,7 @@ export default function Contact() {
                 <Mail className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-semibold text-indus-blue">Email</h3>
-              <p className="text-charcoal-grey">gaurav@indusrivergroup.com</p>
+              <p className="text-charcoal-grey">info@indusrivergroup.com</p>
             </div>
 
             <div className="space-y-4">
