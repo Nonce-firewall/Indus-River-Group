@@ -38,9 +38,9 @@ async function diagnoseEmailIssues() {
       user: process.env.ADMIN_EMAIL_USER,
       pass: process.env.ADMIN_EMAIL_PASSWORD,
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
   });
   
   try {
