@@ -39,9 +39,9 @@ export async function sendContactEmail(emailData: {
         user: process.env.ADMIN_EMAIL_USER,
         pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 5000,    // 5 seconds
-      socketTimeout: 10000,     // 10 seconds
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 60000,   // 60 seconds
+      socketTimeout: 60000,     // 60 seconds
       pool: false,              // Disable connection pooling for reliability
       maxConnections: 1,
       maxMessages: 1,
