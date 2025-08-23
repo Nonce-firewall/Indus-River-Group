@@ -16,8 +16,8 @@ The contact form supports two integration methods:
    - Generate password for "Mail"
 3. Create `.env.local` file with:
    ```
-   GMAIL_USER=your-email@indusrivergroup.com
-   GMAIL_APP_PASSWORD=your-16-character-app-password
+   ADMIN_EMAIL_USER=your-email@indusrivergroup.com
+   ADMIN_EMAIL_PASSWORD=your-16-character-app-password
    ```
 
 **Option B: Gmail API (More secure)**
