@@ -45,25 +45,31 @@ Submitted at: ${new Date().toLocaleString('en-US', {
       submittedAt: new Date().toISOString()
     });
 
-    // Send email asynchronously without blocking the response
+    // Send email and wait for result
     const emailData = {
-      to: 'gaurav@indusrivergroup.com', // Direct to Gaurav who will setup auto-forward
+      to: 'gaurav@indusrivergroup.com',
       subject: 'New Contact Form Submission',
       text: emailContent,
       from: email,
       replyTo: email
     };
 
-    // Send email in background without waiting
-    sendContactEmail(emailData).catch(error => {
-      console.log('Background email sending failed:', error);
-    });
+    // Send email and wait for result
+    const emailResult = await sendContactEmail(emailData);
+    
+    if (!emailResult.success) {
+      console.log('Email sending failed:', emailResult.error);
+      return NextResponse.json(
+        { error: 'Message received but email delivery failed. We have your submission logged and will respond soon.' },
+        { status: 500 }
+      );
+    }
 
-    // Return immediate success response
+    // Return success only if email was sent
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Thank you for your message! We have received your inquiry and will get back to you within 24-48 hours.'
+        message: 'Thank you for your message! It has been sent to gaurav@indusrivergroup.com and we will get back to you within 24-48 hours.'
       },
       { status: 200 }
     );

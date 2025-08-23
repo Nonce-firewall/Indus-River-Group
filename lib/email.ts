@@ -40,12 +40,13 @@ export async function sendContactEmail(emailData: {
         user: process.env.ADMIN_EMAIL_USER,
         pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
-      connectionTimeout: 60000,
-      greetingTimeout: 60000,
-      socketTimeout: 60000,
+      connectionTimeout: 30000,
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
       pool: true, // Use connection pooling
       maxConnections: 1,
       maxMessages: 3,
+      debug: true, // Enable debug logging
     });
 
     const mailOptions = {
@@ -58,20 +59,22 @@ export async function sendContactEmail(emailData: {
     };
 
     console.log('📧 Sending email with subject:', emailData.subject);
+    console.log('📧 From:', process.env.ADMIN_EMAIL_USER);
+    console.log('📧 To:', emailData.to);
+    
     const info = await transporter.sendMail(mailOptions);
     console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY');
-    console.log('📧 AUTHENTICATED WITH:', process.env.ADMIN_EMAIL_USER);
-    console.log('📧 TO:', emailData.to);
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.log('❌ CONTACT FORM EMAIL NOT SENT: Email delivery failed');
-    console.log('🔧 Error details:', error);
+    console.log('🔧 Error details:', error.message);
+    console.log('🔧 Error code:', error.code);
     console.log('📝 Form submission logged locally - check terminal output above');
     
     return { 
       success: false, 
-      error: 'Email delivery failed' 
+      error: error.message || 'Email delivery failed'
     };
   }
 }
