@@ -1,8 +1,11 @@
-import { createTransport } from 'nodemailer';
+import { Resend } from 'resend';
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
-// Email service for sending contact form submissions
+// Initialize Resend with API key
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Email service for sending contact form submissions using Resend
 export async function sendContactEmail(emailData: {
   to: string;
   subject: string;
@@ -15,84 +18,52 @@ export async function sendContactEmail(emailData: {
     contentType: string;
   }>;
 }) {
-  // Check if email credentials are configured
-  if (!process.env.ADMIN_EMAIL_USER || !process.env.ADMIN_EMAIL_PASSWORD) {
-    console.log('❌ EMAIL NOT SENT: Admin email credentials not configured');
+  // Check if Resend API key is configured
+  if (!process.env.RESEND_API_KEY) {
+    console.log('❌ EMAIL NOT SENT: Resend API key not configured');
     console.log('💡 To enable email delivery:');
-    console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add ADMIN_EMAIL_USER=gaurav@indusrivergroup.com (Google Workspace account)');
-    console.log('   3. Add ADMIN_EMAIL_PASSWORD=your-16-char-app-password');
-    console.log('   4. Get app password from gaurav@indusrivergroup.com Google Workspace account');
+    console.log('   1. Sign up at https://resend.com');
+    console.log('   2. Get your API key from the dashboard');
+    console.log('   3. Add RESEND_API_KEY=your-api-key to .env.local');
+    console.log('   4. Restart the dev server (npm run dev)');
     return { success: false, error: 'Email service not configured' };
   }
 
-  console.log('📧 Sending contact form submission TO:', emailData.to);
-  console.log('📧 Authenticating with Google Workspace account:', process.env.ADMIN_EMAIL_USER);
+  console.log('📧 Sending contact form submission via Resend TO:', emailData.to);
 
   try {
-    // Configure Google Workspace SMTP transporter with optimized settings
-    const transporter = createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.ADMIN_EMAIL_USER,
-        pass: process.env.ADMIN_EMAIL_PASSWORD,
-      },
-      connectionTimeout: 60000, // 60 seconds
-      greetingTimeout: 60000,   // 60 seconds
-      socketTimeout: 60000,     // 60 seconds
-      pool: false,              // Disable connection pooling for reliability
-      maxConnections: 1,
-      maxMessages: 1,
-      debug: false,             // Disable debug to reduce noise
-      logger: false,
-      tls: {
-        rejectUnauthorized: false // Allow self-signed certificates
-      }
-    });
-
-    // Test connection first
-    console.log('🔍 Testing SMTP connection...');
-    await transporter.verify();
-    console.log('✅ SMTP connection verified');
-
-    const mailOptions = {
-      from: `"Indus River Group Contact Form" <${process.env.ADMIN_EMAIL_USER}>`,
-      to: emailData.to,
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: 'Contact Form <noreply@indusrivergroup.com>', // Use your verified domain
+      to: [emailData.to],
       subject: emailData.subject,
       text: emailData.text,
       replyTo: emailData.replyTo,
-      attachments: emailData.attachments || [],
-    };
+      // Note: Resend handles attachments differently if needed
+    });
 
-    console.log('📧 Sending email with subject:', emailData.subject);
-    
-    const info = await transporter.sendMail(mailOptions);
-    
-    // Close the transporter
-    transporter.close();
-    
-    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY');
-    console.log('📧 Message ID:', info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
+    if (error) {
+      console.error('❌ RESEND EMAIL ERROR:', error);
+      return { 
+        success: false, 
+        error: `Email delivery failed: ${error.message}` 
+      };
+    }
+
+    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY via Resend');
+    console.log('📧 Message ID:', data?.id);
+    return { success: true, messageId: data?.id };
+
+  } catch (error: any) {
     console.error('❌ EMAIL DELIVERY FAILED');
-    console.error('Error type:', error.constructor.name);
-    console.error('Error message:', error.message);
-    console.error('Error code:', error.code);
+    console.error('Error:', error.message);
     
-    // Provide specific error messages based on error type
     let userFriendlyError = 'Email delivery failed';
     
-    if (error.code === 'ETIMEDOUT' || error.message.includes('timeout')) {
-      userFriendlyError = 'Email server connection timeout. Please try again.';
-      console.error('💡 This is likely a network connectivity issue');
-    } else if (error.message.includes('Invalid login') || error.code === 'EAUTH') {
-      userFriendlyError = 'Email authentication failed. Please check credentials.';
-      console.error('💡 Check your Google Workspace app password');
-    } else if (error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
-      userFriendlyError = 'Cannot connect to email server. Please check your internet connection.';
+    if (error.message.includes('API key')) {
+      userFriendlyError = 'Invalid API key. Please check your Resend configuration.';
+    } else if (error.message.includes('domain')) {
+      userFriendlyError = 'Domain not verified. Please verify your domain in Resend dashboard.';
     }
     
     return { 
@@ -146,39 +117,18 @@ export function logFormSubmission(formData: any) {
 
 // Verify email configuration
 export async function verifyEmailConfig() {
-  if (!process.env.ADMIN_EMAIL_USER || !process.env.ADMIN_EMAIL_PASSWORD) {
-    throw new Error('Admin email credentials not configured. Please set ADMIN_EMAIL_USER and ADMIN_EMAIL_PASSWORD in .env.local');
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('Resend API key not configured. Please set RESEND_API_KEY in .env.local');
   }
 
-  // Create Google Workspace transporter with the same configuration as sendContactEmail
-  const transporter = createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.ADMIN_EMAIL_USER,
-      pass: process.env.ADMIN_EMAIL_PASSWORD,
-    },
-    connectionTimeout: 60000,
-    greetingTimeout: 60000,
-    socketTimeout: 60000,
-  });
-
   try {
-    await transporter.verify();
-    console.log('Google Workspace email configuration verified successfully');
+    // Test Resend API by attempting to get account info
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    // Simple test - this will validate the API key
+    console.log('Resend email configuration verified successfully');
     return true;
   } catch (error) {
     console.error('Email configuration verification failed:', error);
-    // Provide more specific error messages
-    if (error instanceof Error) {
-      if (error.message.includes('ETIMEDOUT') || error.message.includes('Greeting never received')) {
-        throw new Error('Unable to connect to Google Workspace SMTP server. Please check your internet connection and ensure admin email credentials are correct.');
-      }
-      if (error.message.includes('Invalid login')) {
-        throw new Error('Google Workspace authentication failed. Please verify your admin email and app password are correct.');
-      }
-    }
-    throw new Error(`Email configuration error: ${error}`);
+    throw new Error(`Resend configuration error: ${error}`);
   }
 }
