@@ -20,15 +20,15 @@ export async function sendContactEmail(emailData: {
     console.log('❌ EMAIL NOT SENT: Admin email credentials not configured');
     console.log('💡 To enable email delivery:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add ADMIN_EMAIL_USER=gaurav@indusrivergroup.com');
+    console.log('   2. Add ADMIN_EMAIL_USER=gaurav@indusrivergroup.com (Google Workspace account)');
     console.log('   3. Add ADMIN_EMAIL_PASSWORD=your-16-char-app-password');
-    console.log('   4. Get app password from Google Workspace admin console');
+    console.log('   4. Get app password from gaurav@indusrivergroup.com Google Workspace account');
     return { success: false, error: 'Email service not configured' };
   }
 
 
-  console.log('📧 Sending contact form submission to:', emailData.to);
-  console.log('📧 Using admin account:', process.env.ADMIN_EMAIL_USER);
+  console.log('📧 Sending contact form submission TO:', emailData.to);
+  console.log('📧 Sending FROM Google Workspace account:', process.env.ADMIN_EMAIL_USER);
 
   try {
     // Configure Google Workspace SMTP transporter
@@ -59,11 +59,13 @@ export async function sendContactEmail(emailData: {
 
     console.log('📧 Sending email with subject:', emailData.subject);
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to:', emailData.to);
+    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY');
+    console.log('📧 FROM:', process.env.ADMIN_EMAIL_USER);
+    console.log('📧 TO:', emailData.to);
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ CONTACT FORM EMAIL NOT SENT: SMTP connection failed');
+    console.log('❌ CONTACT FORM EMAIL NOT SENT: Email delivery failed');
     console.log('🔧 Error details:', error);
     console.log('📝 Form submission logged locally - check terminal output above');
     
