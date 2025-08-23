@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const { createTransport } = require('nodemailer');
 require('dotenv').config({ path: '.env.local' });
 
 async function diagnoseEmailDelivery() {
@@ -27,7 +27,7 @@ async function diagnoseEmailDelivery() {
   // Step 2: Test SMTP connection
   console.log('\n2. TESTING SMTP CONNECTION:');
   
-  const transporter = nodemailer.createTransporter({
+  const transporter = createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
