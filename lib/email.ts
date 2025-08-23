@@ -134,8 +134,8 @@ export async function verifyEmailConfig() {
       pass: process.env.ADMIN_EMAIL_PASSWORD,
     },
     connectionTimeout: 60000,
-    greetingTimeout: 25000,
-    socketTimeout: 25000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
   });
 
   try {
