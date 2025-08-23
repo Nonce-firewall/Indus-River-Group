@@ -2,9 +2,6 @@ import { Resend } from 'resend';
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Email service for sending contact form submissions using Resend
 export async function sendContactEmail(emailData: {
   to: string;
@@ -28,6 +25,9 @@ export async function sendContactEmail(emailData: {
     console.log('   4. Restart the dev server (npm run dev)');
     return { success: false, error: 'Email service not configured' };
   }
+
+  // Initialize Resend with API key only when needed
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   console.log('📧 Sending contact form submission via Resend TO:', emailData.to);
 
