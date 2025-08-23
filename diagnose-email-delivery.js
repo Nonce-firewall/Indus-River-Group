@@ -17,7 +17,7 @@ async function diagnoseEmailDelivery() {
     console.log('\n❌ EMAIL CREDENTIALS NOT CONFIGURED');
     console.log('📝 To fix this:');
     console.log('1. Create/update .env.local file in project root');
-    console.log('2. Add: ADMIN_EMAIL_USER=rohin@indusrivergroup.com');
+    console.log('2. Add: ADMIN_EMAIL_USER=gaurav@indusrivergroup.com');
     console.log('3. Add: ADMIN_EMAIL_PASSWORD=your-16-character-app-password');
     console.log('4. Get app password from Google Workspace admin console');
     console.log('5. Restart the dev server (npm run dev)');
