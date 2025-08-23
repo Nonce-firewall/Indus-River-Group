@@ -20,7 +20,7 @@ export async function sendContactEmail(emailData: {
     console.log('❌ EMAIL NOT SENT: Admin email credentials not configured');
     console.log('💡 To enable email delivery:');
     console.log('   1. Create .env.local file in project root');
-    console.log('   2. Add ADMIN_EMAIL_USER=rohin@indusrivergroup.com');
+    console.log('   2. Add ADMIN_EMAIL_USER=gaurav@indusrivergroup.com');
     console.log('   3. Add ADMIN_EMAIL_PASSWORD=your-16-char-app-password');
     console.log('   4. Get app password from Google Workspace admin console');
     return { success: false, error: 'Email service not configured' };

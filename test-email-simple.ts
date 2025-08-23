@@ -59,7 +59,7 @@ All group members should receive this test message.
     console.log('\n🔧 TROUBLESHOOTING TIPS:');
     console.log('1. Check that your .env.local file has the correct credentials');
     console.log('2. Verify the app password is exactly 16 characters with no spaces');
-    console.log('3. Ensure 2FA is enabled on rohin@indusrivergroup.com');
+    console.log('3. Ensure 2FA is enabled on gaurav@indusrivergroup.com');
     console.log('4. Try generating a new app password if needed');
   }
 }

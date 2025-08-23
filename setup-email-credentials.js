@@ -36,11 +36,11 @@ function setupEmailCredentials() {
   console.log('\n📝 TO SET UP EMAIL DELIVERY:');
   console.log('1. Create/update .env.local file in project root');
   console.log('2. Add these lines:');
-  console.log('   ADMIN_EMAIL_USER=rohin@indusrivergroup.com');
+  console.log('   ADMIN_EMAIL_USER=gaurav@indusrivergroup.com');
   console.log('   ADMIN_EMAIL_PASSWORD=your-16-character-app-password');
   console.log('');
   console.log('3. To get the app password:');
-  console.log('   - Go to Google Account settings for rohin@indusrivergroup.com');
+  console.log('   - Go to Google Account settings for gaurav@indusrivergroup.com');
   console.log('   - Security → 2-Step Verification → App passwords');
   console.log('   - Generate password for "Mail"');
   console.log('   - Use the 16-character password (no spaces)');
