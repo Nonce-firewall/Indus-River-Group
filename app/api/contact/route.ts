@@ -3,37 +3,10 @@ import { sendContactEmail, logFormSubmission } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
-    
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const company = formData.get('company') as string;
-    const role = formData.get('role') as string;
-    const message = formData.get('message') as string;
-    const audienceType = formData.get('audienceType') as string;
-    
-    // Process attached files
-    const attachments: Array<{
-      filename: string;
-      content: Buffer;
-      contentType: string;
-    }> = [];
-    
-    const entries = Array.from(formData.entries());
-    
-    for (const [key, value] of entries) {
-      if (key.startsWith('attachment_') && value instanceof File) {
-        const buffer = Buffer.from(await value.arrayBuffer());
-        attachments.push({
-          filename: value.name,
-          content: buffer,
-          contentType: value.type || 'application/octet-stream'
-        });
-      }
-    }
+    const { name, email, company, message } = await request.json();
 
     // Validate required fields
-    if (!name || !email || !message || !audienceType) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -44,19 +17,13 @@ export async function POST(request: NextRequest) {
     const emailContent = `
 New Contact Form Submission from Indus River Group Website
 
-Contact Type: ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}
 Name: ${name}
 Email: ${email}
 Company: ${company || 'Not provided'}
-Role: ${role || 'Not provided'}
 
 Message:
 ${message}
 
-${attachments.length > 0 ? `
-Attachments (${attachments.length} files):
-${attachments.map(att => `- ${att.filename} (${(att.content.length / 1024 / 1024).toFixed(2)} MB)`).join('\n')}
-` : ''}
 ---
 Submitted at: ${new Date().toLocaleString('en-US', { 
   timeZone: 'America/New_York',
@@ -71,25 +38,20 @@ Submitted at: ${new Date().toLocaleString('en-US', {
 
     // Always log the form submission locally
     logFormSubmission({
-      audienceType,
       name,
       email,
       company,
-      role,
       message,
-      attachmentCount: attachments.length,
-      attachmentNames: attachments.map(att => att.filename),
       submittedAt: new Date().toISOString()
     });
 
     // Send email asynchronously without blocking the response
     const emailData = {
-      to: 'info@indusrivergroup.com',
-      subject: `New Contact Form Submission - ${audienceType.charAt(0).toUpperCase() + audienceType.slice(1).replace('-', ' ')}`,
+      to: 'gaurav@indusrivergroup.com',
+      subject: 'New Contact Form Submission',
       text: emailContent,
       from: email,
-      replyTo: email,
-      attachments: attachments
+      replyTo: email
     };
 
     // Send email in background without waiting
@@ -111,7 +73,7 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     
     // Always return a generic error message
     return NextResponse.json(
-      { error: 'There was an issue processing your request. Please try again or contact us directly at info@indusrivergroup.com' },
+      { error: 'There was an issue processing your request. Please try again or contact us directly at gaurav@indusrivergroup.com' },
       { status: 500 }
     );
   }

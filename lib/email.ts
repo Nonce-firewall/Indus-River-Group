@@ -27,7 +27,7 @@ export async function sendContactEmail(emailData: {
   }
 
 
-  console.log('📧 Sending contact form submission to group email:', emailData.to);
+  console.log('📧 Sending contact form submission to:', emailData.to);
   console.log('📧 Using admin account:', process.env.ADMIN_EMAIL_USER);
 
   try {
@@ -59,12 +59,11 @@ export async function sendContactEmail(emailData: {
 
     console.log('📧 Sending email with subject:', emailData.subject);
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to group email:', emailData.to);
-    console.log('📧 All group members will receive this submission');
+    console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY to:', emailData.to);
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ CONTACT FORM EMAIL NOT SENT: Google Workspace SMTP connection failed');
+    console.log('❌ CONTACT FORM EMAIL NOT SENT: SMTP connection failed');
     console.log('🔧 Error details:', error);
     console.log('📝 Form submission logged locally - check terminal output above');
     
@@ -113,13 +112,7 @@ export function logFormSubmission(formData: any) {
   console.log(`👤 Name: ${formData.name}`);
   console.log(`📧 Email: ${formData.email}`);
   console.log(`🏢 Company: ${formData.company || 'Not provided'}`);
-  console.log(`💼 Role: ${formData.role || 'Not provided'}`);
-  console.log(`📋 Type: ${formData.audienceType}`);
   console.log(`💬 Message: ${formData.message}`);
-  if (formData.attachmentCount > 0) {
-    console.log(`📎 Attachments: ${formData.attachmentCount} files`);
-    console.log(`   Files: ${formData.attachmentNames?.join(', ')}`);
-  }
   console.log('=====================================\n');
 }
 
