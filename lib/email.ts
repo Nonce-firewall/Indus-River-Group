@@ -26,12 +26,11 @@ export async function sendContactEmail(emailData: {
     return { success: false, error: 'Email service not configured' };
   }
 
-
   console.log('📧 Sending contact form submission TO:', emailData.to);
   console.log('📧 Authenticating with Google Workspace account:', process.env.ADMIN_EMAIL_USER);
 
   try {
-    // Configure Google Workspace SMTP transporter
+    // Configure Google Workspace SMTP transporter with optimized settings
     const transporter = createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -40,14 +39,23 @@ export async function sendContactEmail(emailData: {
         user: process.env.ADMIN_EMAIL_USER,
         pass: process.env.ADMIN_EMAIL_PASSWORD,
       },
-      connectionTimeout: 30000,
-      greetingTimeout: 30000,
-      socketTimeout: 30000,
-      pool: true, // Use connection pooling
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 5000,    // 5 seconds
+      socketTimeout: 10000,     // 10 seconds
+      pool: false,              // Disable connection pooling for reliability
       maxConnections: 1,
-      maxMessages: 3,
-      debug: true, // Enable debug logging
+      maxMessages: 1,
+      debug: false,             // Disable debug to reduce noise
+      logger: false,
+      tls: {
+        rejectUnauthorized: false // Allow self-signed certificates
+      }
     });
+
+    // Test connection first
+    console.log('🔍 Testing SMTP connection...');
+    await transporter.verify();
+    console.log('✅ SMTP connection verified');
 
     const mailOptions = {
       from: `"Indus River Group Contact Form" <${process.env.ADMIN_EMAIL_USER}>`,
@@ -59,22 +67,37 @@ export async function sendContactEmail(emailData: {
     };
 
     console.log('📧 Sending email with subject:', emailData.subject);
-    console.log('📧 From:', process.env.ADMIN_EMAIL_USER);
-    console.log('📧 To:', emailData.to);
     
     const info = await transporter.sendMail(mailOptions);
+    
+    // Close the transporter
+    transporter.close();
+    
     console.log('✅ CONTACT FORM EMAIL SENT SUCCESSFULLY');
     console.log('📧 Message ID:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.log('❌ CONTACT FORM EMAIL NOT SENT: Email delivery failed');
-    console.log('🔧 Error details:', error.message);
-    console.log('🔧 Error code:', error.code);
-    console.log('📝 Form submission logged locally - check terminal output above');
+    console.error('❌ EMAIL DELIVERY FAILED');
+    console.error('Error type:', error.constructor.name);
+    console.error('Error message:', error.message);
+    console.error('Error code:', error.code);
+    
+    // Provide specific error messages based on error type
+    let userFriendlyError = 'Email delivery failed';
+    
+    if (error.code === 'ETIMEDOUT' || error.message.includes('timeout')) {
+      userFriendlyError = 'Email server connection timeout. Please try again.';
+      console.error('💡 This is likely a network connectivity issue');
+    } else if (error.message.includes('Invalid login') || error.code === 'EAUTH') {
+      userFriendlyError = 'Email authentication failed. Please check credentials.';
+      console.error('💡 Check your Google Workspace app password');
+    } else if (error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
+      userFriendlyError = 'Cannot connect to email server. Please check your internet connection.';
+    }
     
     return { 
       success: false, 
-      error: error.message || 'Email delivery failed'
+      error: userFriendlyError
     };
   }
 }

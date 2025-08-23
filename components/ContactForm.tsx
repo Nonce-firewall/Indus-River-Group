@@ -33,8 +33,13 @@ export default function ContactForm() {
         e.target.reset();
       } else {
         const error = await response.json();
-        console.error('Server error:', error);
+        console.error('Contact form error:', error);
         setSubmitStatus('error');
+        
+        // Show specific error message if available
+        if (error.error && error.error.includes('timeout')) {
+          console.log('Network timeout - please try again');
+        }
       }
     } catch (error) {
       console.error('Network error:', error);

@@ -58,9 +58,9 @@ Submitted at: ${new Date().toLocaleString('en-US', {
     const emailResult = await sendContactEmail(emailData);
     
     if (!emailResult.success) {
-      console.log('Email sending failed:', emailResult.error);
+      console.error('Email sending failed:', emailResult.error);
       return NextResponse.json(
-        { error: 'Message received but email delivery failed. We have your submission logged and will respond soon.' },
+        { error: `Email delivery failed: ${emailResult.error}. Your message has been logged and we will respond soon.` },
         { status: 500 }
       );
     }
