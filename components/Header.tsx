@@ -41,9 +41,9 @@ export default function Header() {
               <img 
                 src="/Indus%20River%20logo%20alone.png" 
                 alt="Indus River Group" 
-                className="h-16 w-16 mr-4" 
+                className="h-12 w-12 sm:h-16 sm:w-16 mr-2 sm:mr-4" 
               />
-              <span className="text-2xl" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-lg sm:text-2xl leading-tight" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 INDUS RIVER
               </span>
             </div>
