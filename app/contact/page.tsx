@@ -5,20 +5,6 @@ import { useForm, ValidationError } from '@formspree/react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Contact Us - Start a Conversation',
-  description: 'Contact Indus River Group for business partnerships, investment opportunities, or deal flow. We respond within 24-48 hours to all inquiries.',
-  openGraph: {
-    title: 'Contact Indus River Group - Start a Conversation',
-    description: 'Contact us for business partnerships, investment opportunities, or deal flow. We respond within 24-48 hours to all inquiries.',
-    url: 'https://indusrivergroup.com/contact',
-  },
-  alternates: {
-    canonical: 'https://indusrivergroup.com/contact',
-  },
-};
 
 export default function Contact() {
   const [state, handleSubmit] = useForm("xpwjqqnr");
