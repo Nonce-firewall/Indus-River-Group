@@ -11,7 +11,7 @@ export default function About() {
       <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-indus-blue mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-indus-blue mb-4 sm:mb-6">
               Our Story
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-charcoal-grey max-w-3xl mx-auto">
