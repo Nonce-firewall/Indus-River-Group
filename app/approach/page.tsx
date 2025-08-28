@@ -33,10 +33,10 @@ export default function Approach() {
       {/* Hero Section */}
       <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-indus-blue mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-indus-blue mb-4 sm:mb-6">
             Investment Approach
           </h1>
-          <p className="text-xl text-charcoal-grey max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-charcoal-grey max-w-3xl mx-auto">
             Our methodology combines patient capital, operational expertise, and flexible 
             structures to create sustainable value for established businesses.
           </p>
@@ -46,7 +46,7 @@ export default function Approach() {
       {/* Investment Criteria */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-indus-blue text-center mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-indus-blue text-center mb-12 sm:mb-16">
             Investment Criteria
           </h2>
 
@@ -61,19 +61,19 @@ export default function Approach() {
                 <ul className="space-y-3 text-charcoal-grey">
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Large, fragmented markets with no dominant player
+                    <span className="text-sm sm:text-base">Large, fragmented markets with no dominant player</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Niche leaders scalable via strategic consolidation
+                    <span className="text-sm sm:text-base">Niche leaders scalable via strategic consolidation</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Inefficient markets where scale creates outsized value
+                    <span className="text-sm sm:text-base">Inefficient markets where scale creates outsized value</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Defensive characteristics and favorable long-term trends
+                    <span className="text-sm sm:text-base">Defensive characteristics and favorable long-term trends</span>
                   </li>
                 </ul>
               </div>
@@ -85,19 +85,19 @@ export default function Approach() {
                 <ul className="space-y-3 text-charcoal-grey">
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Leading position in niche market with defensible moat
+                    <span className="text-sm sm:text-base">Leading position in niche market with defensible moat</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Experienced, committed management team
+                    <span className="text-sm sm:text-base">Experienced, committed management team</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Unique products or processes that are hard to replicate
+                    <span className="text-sm sm:text-base">Unique products or processes that are hard to replicate</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Strong customer relationships and recurring revenue streams
+                    <span className="text-sm sm:text-base">Strong customer relationships and recurring revenue streams</span>
                   </li>
                 </ul>
               </div>
@@ -112,19 +112,19 @@ export default function Approach() {
                 <ul className="space-y-3 text-charcoal-grey">
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Multiple growth avenues and expansion opportunities
+                    <span className="text-sm sm:text-base">Multiple growth avenues and expansion opportunities</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Predictable, recurring cash flows
+                    <span className="text-sm sm:text-base">Predictable, recurring cash flows</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Low capital expenditure requirements
+                    <span className="text-sm sm:text-base">Low capital expenditure requirements</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-success-green mr-3 mt-0.5 flex-shrink-0" />
-                    Diversified customer and supplier base
+                    <span className="text-sm sm:text-base">Diversified customer and supplier base</span>
                   </li>
                 </ul>
               </div>
@@ -160,7 +160,7 @@ export default function Approach() {
       {/* Our Process */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-indus-blue text-center mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-indus-blue text-center mb-12 sm:mb-16">
             Our Process
           </h2>
 
@@ -180,7 +180,7 @@ export default function Approach() {
                   <h3 className="text-xl font-semibold text-indus-blue">
                     {step.title}
                   </h3>
-                  <p className="text-charcoal-grey leading-relaxed">
+                  <p className="text-sm sm:text-base text-charcoal-grey leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -193,17 +193,17 @@ export default function Approach() {
       {/* Partnership Philosophy */}
       <section className="py-16 bg-indus-blue text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
             Partnership Philosophy
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
-            <p className="text-xl leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed">
               We believe the best investments are true partnerships where both parties 
               bring complementary strengths. Our role is to provide not just capital, 
               but operational expertise, strategic guidance, and the patience necessary 
               for sustainable growth.
             </p>
-            <blockquote className="text-2xl font-serif italic text-cerulean">
+            <blockquote className="text-lg sm:text-xl lg:text-2xl font-serif italic text-cerulean">
               "We don't impose growth—we invite it. We don't chase scale—we cultivate substance."
             </blockquote>
           </div>

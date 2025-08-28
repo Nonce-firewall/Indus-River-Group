@@ -11,10 +11,10 @@ export default function Team() {
       {/* Hero Section */}
       <section className="pt-28 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-indus-blue mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-indus-blue mb-4 sm:mb-6">
             Our Team
           </h1>
-          <p className="text-xl text-charcoal-grey max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-charcoal-grey max-w-3xl mx-auto">
             Experienced operators with decades of hands-on business leadership, 
             united by a commitment to patient stewardship and sustainable growth.
           </p>
@@ -42,14 +42,14 @@ export default function Team() {
               </div>
               
               <div className="space-y-4 text-charcoal-grey">
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   Gaurav brings decades of leadership experience in high-stakes environments 
                   where operational excellence and sound judgment are paramount. His background 
                   has instilled a deep appreciation for building strong foundations and 
                   thinking strategically about long-term outcomes.
                 </p>
                 
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   His approach to business leadership emphasizes methodical analysis, 
                   disciplined execution, and the importance of making decisions that 
                   serve the greater good of all stakeholders. This philosophy naturally 
@@ -57,7 +57,7 @@ export default function Team() {
                   sustainable growth take precedence over short-term gains.
                 </p>
                 
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   Gaurav's core belief is that the best businesses are built on integrity, 
                   operational discipline, and a genuine commitment to serving customers 
                   and communities. He brings this values-driven perspective to every 
@@ -95,14 +95,14 @@ export default function Team() {
               </div>
               
               <div className="space-y-4 text-charcoal-grey">
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   Rohin combines entrepreneurial instinct with analytical rigor, bringing 
                   multi-industry experience and a talent for identifying opportunities 
                   where others see only complexity. His versatile background spans 
                   various business contexts and operational challenges.
                 </p>
                 
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   His particular strength lies in understanding how to preserve the 
                   entrepreneurial spirit that made a business successful while 
                   introducing the systems and processes that enable modern scaling. 
@@ -110,7 +110,7 @@ export default function Team() {
                   the heart of the Indus River approach.
                 </p>
                 
-                <p className="leading-relaxed">
+                <p className="text-sm sm:text-base leading-relaxed">
                   Rohin's investment philosophy centers on the belief that the best 
                   partnerships are those where both parties bring complementary 
                   strengths to the table. He focuses on creating environments where 
@@ -145,7 +145,7 @@ export default function Team() {
             <h2 className="text-3xl font-bold text-indus-blue mb-6">
               Advisory Network
             </h2>
-            <p className="text-xl text-charcoal-grey max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-charcoal-grey max-w-3xl mx-auto">
               We are supported by an extensive network of industry veterans, former operators, 
               and seasoned investors who provide hands-on guidance across a wide range of 
               business challenges and opportunities.
@@ -157,7 +157,7 @@ export default function Team() {
               <h3 className="text-lg font-semibold text-indus-blue">
                 Industry Veterans
               </h3>
-              <p className="text-charcoal-grey">
+              <p className="text-sm sm:text-base text-charcoal-grey">
                 Former executives and entrepreneurs who have built and scaled 
                 businesses in our target sectors.
               </p>
@@ -167,7 +167,7 @@ export default function Team() {
               <h3 className="text-lg font-semibold text-indus-blue">
                 Operational Experts
               </h3>
-              <p className="text-charcoal-grey">
+              <p className="text-sm sm:text-base text-charcoal-grey">
                 Specialists in finance, operations, marketing, and technology 
                 who help optimize business performance.
               </p>
@@ -177,7 +177,7 @@ export default function Team() {
               <h3 className="text-lg font-semibold text-indus-blue">
                 Strategic Partners
               </h3>
-              <p className="text-charcoal-grey">
+              <p className="text-sm sm:text-base text-charcoal-grey">
                 Investment professionals and advisors who share our 
                 patient capital philosophy and values-driven approach.
               </p>
