@@ -5,32 +5,32 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section className="relative min-h-screen flex items-center pt-20 sm:pt-0">
       {/* Background with gradient */}
       <div className="absolute inset-0 hero-gradient"></div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Main Content */}
           <div className="text-white space-y-8 animate-fade-in-up">
-            <div className="flex items-center mb-4 sm:mb-6">
+            <div className="flex items-center mb-6 sm:mb-6">
               <img 
                 src="/Indus%20River%20logo%20alone.png" 
                 alt="Indus River Group" 
-                className="h-16 w-16 sm:h-20 sm:w-20 mr-3 sm:mr-5" 
+                className="h-12 w-12 sm:h-20 sm:w-20 mr-3 sm:mr-5" 
               />
-              <span className="text-xl sm:text-2xl lg:text-3xl leading-tight" style={{color: '#FFFFFF', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-lg sm:text-2xl lg:text-3xl leading-tight" style={{color: '#FFFFFF', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 INDUS RIVER GROUP
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Building Enduring Businesses with{' '}
               <span className="text-indus-blue drop-shadow-lg">Integrity</span> and{' '}
               <span className="text-indus-blue drop-shadow-lg">Impact</span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-100 leading-relaxed">
+            <p className="text-base sm:text-xl text-gray-100 leading-relaxed">
               We specialize in acquiring and scaling established small businesses. 
               With flexible deal structures and an operator-led approach, we help 
               companies reach new heights while honoring their legacy.
