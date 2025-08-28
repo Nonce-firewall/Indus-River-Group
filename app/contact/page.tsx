@@ -83,6 +83,73 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Contact Options */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Business Owners */}
+            <div className="bg-white rounded-lg p-8 text-center">
+              <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-6">
+                <Briefcase className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-indus-blue mb-4">
+                For Business Owners
+              </h3>
+              <p className="text-charcoal-grey mb-6 leading-relaxed">
+                If you're considering a sale or partnership, we speak your language. 
+                Our principals have been owner-operators themselves, so we understand 
+                that your business is more than numbers—it's your life's work.
+              </p>
+              <div className="text-sm text-warm-grey">
+                <div className="mb-2">✓ Confidential discussions</div>
+                <div className="mb-2">✓ Flexible deal structures</div>
+                <div>✓ Respectful process</div>
+              </div>
+            </div>
+
+            {/* Investors */}
+            <div className="bg-white rounded-lg p-8 text-center">
+              <div className="w-16 h-16 bg-indus-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-indus-blue mb-4">
+                For Investors
+              </h3>
+              <p className="text-charcoal-grey mb-6 leading-relaxed">
+                We operate as an independent sponsor, partnering with aligned 
+                investors who share our patient capital philosophy and 
+                values-driven approach to business building.
+              </p>
+              <div className="text-sm text-warm-grey">
+                <div className="mb-2">✓ Co-investment opportunities</div>
+                <div className="mb-2">✓ Curated deal flow</div>
+                <div>✓ Aligned interests</div>
+              </div>
+            </div>
+
+            {/* Intermediaries */}
+            <div className="bg-white rounded-lg p-8 text-center">
+              <div className="w-16 h-16 bg-warm-grey rounded-full flex items-center justify-center mx-auto mb-6">
+                <Handshake className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-indus-blue mb-4">
+                For Intermediaries
+              </h3>
+              <p className="text-charcoal-grey mb-6 leading-relaxed">
+                We work with investment bankers, business brokers, and other 
+                intermediaries who represent quality businesses that fit our 
+                criteria and values.
+              </p>
+              <div className="text-sm text-warm-grey">
+                <div className="mb-2">✓ Competitive referral fees</div>
+                <div className="mb-2">✓ Reliable execution</div>
+                <div>✓ Clear process</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,73 +301,6 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Options */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Business Owners */}
-            <div className="bg-white rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto mb-6">
-                <Briefcase className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-indus-blue mb-4">
-                For Business Owners
-              </h3>
-              <p className="text-charcoal-grey mb-6 leading-relaxed">
-                If you're considering a sale or partnership, we speak your language. 
-                Our principals have been owner-operators themselves, so we understand 
-                that your business is more than numbers—it's your life's work.
-              </p>
-              <div className="text-sm text-warm-grey">
-                <div className="mb-2">✓ Confidential discussions</div>
-                <div className="mb-2">✓ Flexible deal structures</div>
-                <div>✓ Respectful process</div>
-              </div>
-            </div>
-
-            {/* Investors */}
-            <div className="bg-white rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-indus-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-indus-blue mb-4">
-                For Investors
-              </h3>
-              <p className="text-charcoal-grey mb-6 leading-relaxed">
-                We operate as an independent sponsor, partnering with aligned 
-                investors who share our patient capital philosophy and 
-                values-driven approach to business building.
-              </p>
-              <div className="text-sm text-warm-grey">
-                <div className="mb-2">✓ Co-investment opportunities</div>
-                <div className="mb-2">✓ Curated deal flow</div>
-                <div>✓ Aligned interests</div>
-              </div>
-            </div>
-
-            {/* Intermediaries */}
-            <div className="bg-white rounded-lg p-8 text-center">
-              <div className="w-16 h-16 bg-warm-grey rounded-full flex items-center justify-center mx-auto mb-6">
-                <Handshake className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-indus-blue mb-4">
-                For Intermediaries
-              </h3>
-              <p className="text-charcoal-grey mb-6 leading-relaxed">
-                We work with investment bankers, business brokers, and other 
-                intermediaries who represent quality businesses that fit our 
-                criteria and values.
-              </p>
-              <div className="text-sm text-warm-grey">
-                <div className="mb-2">✓ Competitive referral fees</div>
-                <div className="mb-2">✓ Reliable execution</div>
-                <div>✓ Clear process</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
