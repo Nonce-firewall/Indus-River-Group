@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
-  const [state, handleSubmitFormspree] = useForm("xpwjqqnr");
+  const [state, handleSubmit] = useForm("xpwjqqnr");
   const [formData, setFormData] = useState({
     audienceType: '',
     name: '',
@@ -42,10 +42,6 @@ export default function Contact() {
       ...prev,
       [name]: value
     }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    await handleSubmitFormspree(e);
   };
 
   return (
@@ -179,7 +175,6 @@ export default function Contact() {
                 <select
                   id="audienceType"
                   name="audienceType"
-                  name="audienceType"
                   value={formData.audienceType}
                   onChange={handleInputChange}
                   required
@@ -203,7 +198,6 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
@@ -219,7 +213,6 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
-                    name="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
@@ -245,7 +238,6 @@ export default function Contact() {
                     type="text"
                     id="company"
                     name="company"
-                    name="company"
                     value={formData.company}
                     onChange={handleInputChange}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-cerulean focus:border-transparent"
@@ -260,7 +252,6 @@ export default function Contact() {
                   <input
                     type="text"
                     id="role"
-                    name="role"
                     name="role"
                     value={formData.role}
                     onChange={handleInputChange}
@@ -277,7 +268,6 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
-                  name="message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
