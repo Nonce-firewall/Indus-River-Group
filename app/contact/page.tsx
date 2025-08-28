@@ -160,9 +160,32 @@ export default function Contact() {
 
             {/* Submit Status Messages */}
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-success-green bg-opacity-10 border border-success-green rounded-lg flex items-center">
-                <CheckCircle className="w-5 h-5 text-success-green mr-3" />
-                <span className="text-success-green">{submitMessage}</span>
+              <div className="mb-8 p-8 bg-success-green bg-opacity-10 border border-success-green rounded-lg">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-success-green rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-indus-blue">
+                    Thank You for Reaching Out
+                  </h3>
+                  <div className="max-w-2xl mx-auto space-y-3">
+                    <p className="text-lg text-charcoal-grey">
+                      Your message has been received and logged in our system.
+                    </p>
+                    <p className="text-charcoal-grey">
+                      We appreciate your interest in Indus River Group and will respond to your inquiry 
+                      within <strong>24-48 hours</strong>. Our team reviews each message carefully to 
+                      provide you with the most relevant information.
+                    </p>
+                    <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                      <p className="text-sm text-warm-grey">
+                        <strong>What happens next?</strong><br />
+                        Our team will review your message and respond via email with next steps 
+                        or additional information relevant to your inquiry.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 
