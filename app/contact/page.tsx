@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
+  const [state, handleSubmitFormspree] = useForm("mdklaaao");
   const [formData, setFormData] = useState({
     audienceType: '',
     name: '',
@@ -14,16 +16,11 @@ export default function Contact() {
     role: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [submitMessage, setSubmitMessage] = useState('');
 
   // Auto-reset form after successful submission
   useEffect(() => {
-    if (submitStatus === 'success') {
+    if (state.succeeded) {
       const timer = setTimeout(() => {
-        setSubmitStatus('idle');
-        setSubmitMessage('');
         // Reset form data
         setFormData({
           audienceType: '',
@@ -37,7 +34,7 @@ export default function Contact() {
 
       return () => clearTimeout(timer);
     }
-  }, [submitStatus]);
+  }, [state.succeeded]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -48,35 +45,7 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you for your message! We\'ll get back to you within 24-48 hours.');
-        // Form will be reset automatically by useEffect after 3 seconds
-      } else {
-        setSubmitStatus('error');
-        setSubmitMessage(result.error || 'Something went wrong. Please try again.');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setSubmitMessage('Network error. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    await handleSubmitFormspree(e);
   };
 
   return (
@@ -173,7 +142,7 @@ export default function Contact() {
             </h2>
 
             {/* Submit Status Messages */}
-            {submitStatus === 'success' && (
+            {state.succeeded && (
               <div className="mb-6 p-4 sm:p-6 bg-indus-blue rounded-lg shadow-lg">
                 <div className="text-center space-y-6">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
@@ -194,10 +163,10 @@ export default function Contact() {
               </div>
             )}
 
-            {submitStatus === 'error' && (
+            {state.errors && state.errors.length > 0 && (
               <div className="mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg flex items-start sm:items-center">
                 <AlertCircle className="w-5 h-5 text-warning-orange mr-3" />
-                <span className="text-sm sm:text-base text-red-700">{submitMessage}</span>
+                <span className="text-sm sm:text-base text-red-700">Please check the form for errors and try again.</span>
               </div>
             )}
 
@@ -209,6 +178,7 @@ export default function Contact() {
                 </label>
                 <select
                   id="audienceType"
+                  name="audienceType"
                   name="audienceType"
                   value={formData.audienceType}
                   onChange={handleInputChange}
@@ -233,6 +203,7 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
+                    name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
@@ -249,6 +220,7 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
+                    name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
@@ -256,6 +228,11 @@ export default function Contact() {
                     placeholder="your.email@example.com"
                   />
                 </div>
+                <ValidationError 
+                  prefix="Email" 
+                  field="email"
+                  errors={state.errors}
+                />
               </div>
 
               {/* Company and Role Row */}
@@ -267,6 +244,7 @@ export default function Contact() {
                   <input
                     type="text"
                     id="company"
+                    name="company"
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
@@ -282,6 +260,7 @@ export default function Contact() {
                   <input
                     type="text"
                     id="role"
+                    name="role"
                     name="role"
                     value={formData.role}
                     onChange={handleInputChange}
@@ -299,6 +278,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   required
@@ -306,16 +286,21 @@ export default function Contact() {
                   className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-cerulean focus:border-transparent resize-vertical"
                   placeholder="Tell us about your business, investment interest, or how we can help..."
                 />
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
+                />
               </div>
 
               {/* Submit Button */}
               <div className="text-center">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
                   className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-cerulean text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto"
                 >
-                  {isSubmitting ? (
+                  {state.submitting ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
                       Sending...

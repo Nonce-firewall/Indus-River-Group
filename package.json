@@ -12,6 +12,7 @@
     "view:submissions": "node view-submissions.js"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "@types/nodemailer": "^7.0.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.446.0",
