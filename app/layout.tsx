@@ -5,21 +5,82 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Indus River Group - Patient Capital for Enduring Businesses',
-  description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures.',
-  keywords: 'private equity, small business acquisition, patient capital, business stewardship, investment firm',
-  authors: [{ name: 'Indus River Group' }],
-  icons: {
-    icon: '/Indus River logo alone.png',
-    shortcut: '/Indus River logo alone.png',
-    apple: '/Indus River logo alone.png',
+  title: {
+    default: 'Indus River Group - Patient Capital for Enduring Businesses',
+    template: '%s | Indus River Group'
   },
+  description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures. EBITDA $1M-$5M, Revenue $3.5M-$50M.',
+  keywords: [
+    'private equity',
+    'small business acquisition', 
+    'patient capital',
+    'business stewardship',
+    'investment firm',
+    'independent sponsor',
+    'business partnership',
+    'operational excellence',
+    'sustainable growth',
+    'family business',
+    'middle market',
+    'buy and hold',
+    'long term investment'
+  ],
+  authors: [{ name: 'Indus River Group' }],
+  creator: 'Indus River Group',
+  publisher: 'Indus River Group',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#08164F' }
+    ]
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Indus River Group - Patient Capital for Enduring Businesses',
-    description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures.',
+    description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures. EBITDA $1M-$5M, Revenue $3.5M-$50M.',
     type: 'website',
+    url: 'https://indusrivergroup.com',
+    siteName: 'Indus River Group',
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Indus River Group - Patient Capital for Enduring Businesses',
+      }
+    ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Indus River Group - Patient Capital for Enduring Businesses',
+    description: 'Private investment firm specializing in acquiring and scaling established small businesses through patient stewardship and flexible deal structures.',
+    images: ['/og-image.png'],
+    creator: '@indusrivergroup',
+  },
+  alternates: {
+    canonical: 'https://indusrivergroup.com',
+  },
+  category: 'business',
 };
 
 export default function RootLayout({

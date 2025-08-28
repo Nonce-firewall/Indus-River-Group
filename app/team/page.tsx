@@ -2,6 +2,20 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ExternalLink, Users } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our Team - Leadership and Advisory Network',
+  description: 'Meet the Indus River Group team: experienced operators with decades of hands-on business leadership, united by commitment to patient stewardship and sustainable growth.',
+  openGraph: {
+    title: 'Our Team - Indus River Group Leadership',
+    description: 'Meet our team: experienced operators with decades of hands-on business leadership, united by commitment to patient stewardship and sustainable growth.',
+    url: 'https://indusrivergroup.com/team',
+  },
+  alternates: {
+    canonical: 'https://indusrivergroup.com/team',
+  },
+};
 
 export default function Team() {
   return (

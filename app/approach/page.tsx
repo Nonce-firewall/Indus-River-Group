@@ -1,6 +1,20 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Search, Handshake, TrendingUp, Shield, Target, CheckCircle } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Investment Approach - Our Methodology and Criteria',
+  description: 'Our investment methodology combines patient capital, operational expertise, and flexible structures. Target: EBITDA $1M-$5M, Revenue $3.5M-$50M, indefinite hold period.',
+  openGraph: {
+    title: 'Investment Approach - Indus River Group Methodology',
+    description: 'Our investment methodology combines patient capital, operational expertise, and flexible structures. Target: EBITDA $1M-$5M, Revenue $3.5M-$50M.',
+    url: 'https://indusrivergroup.com/approach',
+  },
+  alternates: {
+    canonical: 'https://indusrivergroup.com/approach',
+  },
+};
 
 export default function Approach() {
   const processSteps = [

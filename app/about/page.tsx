@@ -1,6 +1,20 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Navigation, Waves, TrendingUp, Shield, Heart, Handshake, Users } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us - Our Story and Heritage',
+  description: 'Learn about Indus River Group\'s heritage rooted in archaeological discovery and river guidance. Our story of patient stewardship and values-driven business investment.',
+  openGraph: {
+    title: 'About Indus River Group - Our Story and Heritage',
+    description: 'Learn about our heritage rooted in archaeological discovery and river guidance. Our story of patient stewardship and values-driven business investment.',
+    url: 'https://indusrivergroup.com/about',
+  },
+  alternates: {
+    canonical: 'https://indusrivergroup.com/about',
+  },
+};
 
 export default function About() {
   return (
