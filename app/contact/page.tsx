@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Users, Briefcase, Handshake, Send, CheckCircle, AlertCircle } from 'lucide-react';
@@ -17,6 +17,27 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
+
+  // Auto-reset form after successful submission
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      const timer = setTimeout(() => {
+        setSubmitStatus('idle');
+        setSubmitMessage('');
+        // Reset form data
+        setFormData({
+          audienceType: '',
+          name: '',
+          email: '',
+          company: '',
+          role: '',
+          message: ''
+        });
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -45,14 +66,7 @@ export default function Contact() {
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Thank you for your message! We\'ll get back to you within 24-48 hours.');
-        setFormData({
-          audienceType: '',
-          name: '',
-          email: '',
-          company: '',
-          role: '',
-          message: ''
-        });
+        // Form will be reset automatically by useEffect after 3 seconds
       } else {
         setSubmitStatus('error');
         setSubmitMessage(result.error || 'Something went wrong. Please try again.');
@@ -160,16 +174,16 @@ export default function Contact() {
 
             {/* Submit Status Messages */}
             {submitStatus === 'success' && (
-              <div className="mb-8 p-8 bg-indus-blue rounded-lg shadow-lg">
+              <div className="mb-8 p-6 bg-indus-blue rounded-lg shadow-lg">
                 <div className="text-center space-y-6">
-                  <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 bg-cerulean rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-xl font-bold text-white">
                     Thank You for Reaching Out
                   </h3>
-                  <div className="max-w-lg mx-auto space-y-4">
-                    <p className="text-lg text-gray-100">
+                  <div className="max-w-lg mx-auto space-y-3">
+                    <p className="text-base text-gray-100">
                       Your message has been received successfully.
                     </p>
                     <p className="text-gray-200">
