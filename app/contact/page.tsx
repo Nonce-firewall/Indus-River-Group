@@ -33,7 +33,7 @@ export default function Contact() {
           role: '',
           message: ''
         });
-      }, 3000); // 3 seconds
+      }, 5000); // 5 seconds
 
       return () => clearTimeout(timer);
     }
