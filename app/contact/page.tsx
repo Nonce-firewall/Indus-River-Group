@@ -160,39 +160,30 @@ export default function Contact() {
 
             {/* Submit Status Messages */}
             {submitStatus === 'success' && (
-              <div className="mb-8 p-8 bg-success-green bg-opacity-10 border border-success-green rounded-lg">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-success-green rounded-full flex items-center justify-center mx-auto">
+              <div className="mb-8 p-8 bg-indus-blue rounded-lg shadow-lg">
+                <div className="text-center space-y-6">
+                  <div className="w-16 h-16 bg-cerulean rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-indus-blue">
+                  <h3 className="text-2xl font-bold text-white">
                     Thank You for Reaching Out
                   </h3>
-                  <div className="max-w-2xl mx-auto space-y-3">
-                    <p className="text-lg text-charcoal-grey">
-                      Your message has been received and logged in our system.
+                  <div className="max-w-lg mx-auto space-y-4">
+                    <p className="text-lg text-gray-100">
+                      Your message has been received successfully.
                     </p>
-                    <p className="text-charcoal-grey">
-                      We appreciate your interest in Indus River Group and will respond to your inquiry 
-                      within <strong>24-48 hours</strong>. Our team reviews each message carefully to 
-                      provide you with the most relevant information.
+                    <p className="text-gray-200">
+                      We'll respond within <span className="text-cerulean font-semibold">24-48 hours</span> with next steps.
                     </p>
-                    <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-warm-grey">
-                        <strong>What happens next?</strong><br />
-                        Our team will review your message and respond via email with next steps 
-                        or additional information relevant to your inquiry.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-warning-orange bg-opacity-10 border border-warning-orange rounded-lg flex items-center">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
                 <AlertCircle className="w-5 h-5 text-warning-orange mr-3" />
-                <span className="text-warning-orange">{submitMessage}</span>
+                <span className="text-red-700">{submitMessage}</span>
               </div>
             )}
 
