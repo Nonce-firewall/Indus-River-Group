@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: 'Indus River Group',
     description: 'Indus River Group is a private investment firm specializing in acquiring established small businesses ($1M-$5M EBITDA). We provide patient capital, operational expertise, and flexible deal structures for sustainable growth.',
     images: ['/images/favicon-original.png'],
