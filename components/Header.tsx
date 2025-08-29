@@ -35,6 +35,7 @@ export default function Header() {
               <span className="text-lg sm:text-2xl leading-tight text-white font-black">
                 INDUS RIVER
               </span>
+              </span>
             </div>
           </Link>
 
