@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import type React from 'react';
-import { GeistSans } from '@vercel/font-geist';
+import { GeistSans } from '@vercel/fonts/geist';
 import { Manrope } from 'next/font/google';
 import { Inter } from 'next/font/google';
 
