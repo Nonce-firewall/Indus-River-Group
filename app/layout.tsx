@@ -1,74 +1,55 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
-import { Manrope } from 'next/font/google';
 import { Inter } from 'next/font/google';
 
 const geist = Geist({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-geist",
-})
+});
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: "--font-inter" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://indusrivergroup.com'),
   title: {
     default: 'Indus River Group - Private Investment Firm | Patient Capital for Small Businesses',
-    template: '%s | Indus River Group'
+    template: '%s | Indus River Group',
   },
   description: 'Indus River Group is a private investment firm specializing in acquiring established small businesses ($1M-$5M EBITDA). We provide patient capital, operational expertise, and flexible deal structures for sustainable growth.',
   keywords: [
-    'private equity',
-    'small business acquisition', 
-    'patient capital',
-    'business stewardship',
-    'investment firm',
-    'independent sponsor',
-    'business partnership',
-    'operational excellence',
-    'sustainable growth',
-    'family business',
-    'middle market',
-    'buy and hold',
-    'long term investment',
-    'indus river group',
-    'business acquisition',
-    'small business investment'
+    'private equity', 'small business acquisition', 'patient capital', 'business stewardship',
+    'investment firm', 'independent sponsor', 'business partnership', 'operational excellence',
+    'sustainable growth', 'family business', 'middle market', 'buy and hold',
+    'long term investment', 'indus river group', 'business acquisition', 'small business investment'
   ],
   authors: [{ name: 'Indus River Group' }],
   creator: 'Indus River Group',
   publisher: 'Indus River Group',
-  metadataBase: new URL('https://indusrivergroup.com'),
-  images: [
-      {
-        url: '/images/favicon-original.png',
-        width: 512,
-        height: 512,
-        alt: 'Indus River Group Logo',
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Indus River Group',
-    description: 'Indus River Group is a private investment firm specializing in acquiring established small businesses ($1M-$5M EBITDA). We provide patient capital, operational expertise, and flexible deal structures for sustainable growth.',
-    images: ['/images/favicon-original.png'],
-    creator: '@Gaurav',
-  },
+  generator: 'Gaurav',
+  category: 'business',
+  // UPDATE: Theme color updated to match site.webmanifest
+  [span_0](start_span)themeColor: "#08164F", //[span_0](end_span)
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#0891b2",
-  manifest: "/manifest.json",
-  icons: {
-    icon: '/images/favicon-original.png',
-    apple: '/images/favicon-original.png',
-  },
-    generator: 'Guarav'
-}
   
+  icons: {
+    // UPDATE: Icon paths updated to match site.webmanifest
+    icon: [
+      [span_1](start_span){ url: '/images/favicon-original.png', sizes: '16x16', type: 'image/png' }, //[span_1](end_span)
+      [span_2](start_span){ url: '/images/favicon-original.png', sizes: '32x32', type: 'image/png' }, //[span_2](end_span)
+      [span_3](start_span){ url: '/images/favicon-original.png', sizes: '192x192', type: 'image/png' } //[span_3](end_span)
+    ],
+    apple: [
+      [span_4](start_span){ url: '/images/favicon-original.png', sizes: '180x180', type: 'image/png' } //[span_4](end_span)
+    ],
+    shortcut: [
+      [span_5](start_span){ url: '/images/favicon-original.png', type: 'image/png' } //[span_5](end_span)
+    ]
+  },
+  
+  manifest: '/site.webmanifest',
+
   robots: {
     index: true,
     follow: true,
@@ -80,26 +61,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: [
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '16x16', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '32x32', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '48x48', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '96x96', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '192x192', type: 'image/png' }
-    ],
-    shortcut: [
-      { url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
-    ],
-    apple: [
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '180x180', type: 'image/png' }
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/Indus%20River%20logo%20alone.png', color: '#08164F' },
-      { rel: 'icon', url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
-    ]
-  },
-  manifest: '/site.webmanifest',
+
   openGraph: {
     title: 'Indus River Group - Private Investment Firm | Patient Capital for Small Businesses',
     description: 'Indus River Group is a private investment firm specializing in acquiring established small businesses ($1M-$5M EBITDA). We provide patient capital, operational expertise, and flexible deal structures.',
@@ -109,46 +71,37 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/Indus%20River%20logo%20alone.png',
-        width: 1200,
-        height: 630,
+        // UPDATE: Image path updated to match site.webmanifest
+        [span_6](start_span)url: '/images/favicon-original.png', //[span_6](end_span)
+        [span_7](start_span)width: 512, //[span_7](end_span)
+        [span_8](start_span)height: 512, //[span_8](end_span)
         alt: 'Indus River Group - Private Investment Firm for Small Businesses',
         type: 'image/png'
       }
     ],
   },
+  
   twitter: {
     card: 'summary_large_image',
     title: 'Indus River Group - Private Investment Firm | Patient Capital',
     description: 'Indus River Group specializes in acquiring established small businesses ($1M-$5M EBITDA) with patient capital and operational expertise.',
-    images: ['/Indus%20River%20logo%20alone.png'],
+    // UPDATE: Image path updated to match site.webmanifest
+    [span_9](start_span)images: ['/images/favicon-original.png'], //[span_9](end_span)
     creator: '@indusrivergroup',
   },
+
   alternates: {
     canonical: 'https://indusrivergroup.com',
   },
-  category: 'business'
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`${geist.variable} ${manrope.variable} antialiased`}>
-     crossorigin="anonymous"></script>
-        <link rel='canonical' href='https://indusrivergroup.com' />
-        <meta name='application-name' content='Indus River Group' />
-        <meta name='apple-mobile-web-app-capable' content='yes' />
-        <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-        <meta name='apple-mobile-web-app-title' content='Indus River Group' />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name='mobile-web-app-capable' content='yes' />
-        <meta name='msapplication-TileColor' content='#0891b2' />
-        <meta name='msapplication-tap-highlight' content='no' />
-        <meta name="theme-color" content="#4F35E1" />
-        <link rel='manifest' href='/manifest.json' />
-      </head>
+    <html lang='en' className={`${geist.variable} ${inter.variable} antialiased`}>
       <body className={inter.className}>{children}</body>
     </html>
   );
