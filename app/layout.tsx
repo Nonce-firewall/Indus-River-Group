@@ -5,7 +5,7 @@ import { GeistSans } from 'geist/font';
 import { Manrope } from 'next/font/google';
 import { Inter } from 'next/font/google';
 
-const geist = GeistSans({ subsets: ['latin'], variable: "--font-geist" });
+const geist = GeistSans;
 const manrope = Manrope({ subsets: ['latin'], variable: "--font-manrope" });
 const inter = Inter({ subsets: ['latin'], variable: "--font-inter" });
 
