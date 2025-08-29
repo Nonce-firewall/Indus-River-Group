@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   keywords: [
     'private equity', 'small business acquisition', 'patient capital', 'business stewardship',
     'investment firm', 'independent sponsor', 'business partnership', 'operational excellence',
-  ]
+  ],
   themeColor: '#08164F',
   authors: [{ name: 'Indus River Group' }],
   creator: 'Indus River Group',
@@ -22,10 +22,6 @@ export const metadata: Metadata = {
   generator: 'Gaurav',
   category: 'business',
   
-  themeColor: [
-    { color: '#08164F' }
-  ],
-
   viewport: "width=device-width, initial-scale=1",
   
   icons: {
