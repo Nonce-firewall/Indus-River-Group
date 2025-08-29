@@ -1,11 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import type React from 'react';
-import { Geist } from 'next/font/google';
+import { GeistSans } from '@vercel/font-geist';
 import { Manrope } from 'next/font/google';
 import { Inter } from 'next/font/google';
 
-const geist = Geist({ subsets: ['latin'], variable: "--font-geist" });
+const geist = GeistSans({ subsets: ['latin'], variable: "--font-geist" });
 const manrope = Manrope({ subsets: ['latin'], variable: "--font-manrope" });
 const inter = Inter({ subsets: ['latin'], variable: "--font-inter" });
 
