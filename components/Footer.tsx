@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Mail, MapPin } from 'lucide-react';
-import IndusRiverLogo from './IndusRiverLogo';
 
 export default function Footer() {
   return (
@@ -16,7 +15,6 @@ export default function Footer() {
                   alt="Indus River Group" 
                   className="h-10 w-10 sm:h-12 sm:w-12 mr-3 sm:mr-4" 
                 />
-                <span className="text-lg sm:text-xl text-white leading-tight" style={{fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
                 <span className="text-lg sm:text-xl text-white leading-tight font-black">
                   INDUS RIVER
                 </span>
@@ -77,6 +75,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
-  )
 }
