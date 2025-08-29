@@ -26,15 +26,15 @@ export const metadata: Metadata = {
   
   icons: {
     icon: [
-      { url: '/images/favicon-original.png', sizes: '16x16', type: 'image/png' },
-      { url: '/images/favicon-original.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/favicon-original.png', sizes: '192x192', type: 'image/png' }
+      { url: '/favicon-original.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-original.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-original.png', sizes: '192x192', type: 'image/png' }
     ],
     apple: [
-      { url: '/images/favicon-original.png', sizes: '180x180', type: 'image/png' }
+      { url: '/favicon-original.png', sizes: '180x180', type: 'image/png' }
     ],
     shortcut: [
-      { url: '/images/favicon-original.png', type: 'image/png' }
+      { url: '/favicon-original.png', type: 'image/png' }
     ]
   },
   
