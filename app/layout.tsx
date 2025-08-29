@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     icon: '/images/favicon-original.png',
     apple: '/images/favicon-original.png',
   },
-    generator: 'Guarav'
+    generator: 'Gaurav'
 }
   
   robots: {
