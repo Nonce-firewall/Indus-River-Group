@@ -66,8 +66,8 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/20 backdrop-blur-sm border-t border-white/20 shadow-lg">
-            <div className="py-4 space-y-2">
+          <div className="md:hidden bg-charcoal-grey border-t border-white/20 shadow-lg">
+            <div className="py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
