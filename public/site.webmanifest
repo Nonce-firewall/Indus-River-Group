@@ -4,32 +4,7 @@
   "description": "Patient Capital for Enduring Businesses",
   "icons": [
     {
-      "src": "/Indus%20River%20logo%20alone.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/Indus%20River%20logo%20alone.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/Indus%20River%20logo%20alone.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/Indus%20River%20logo%20alone.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/Indus%20River%20logo%20alone.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/Indus%20River%20logo%20alone.png",
+      "src": "/images/favicon-original.png",
       "sizes": "512x512",
       "type": "image/png"
     }
