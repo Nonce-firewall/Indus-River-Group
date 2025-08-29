@@ -14,9 +14,7 @@ export const metadata: Metadata = {
   keywords: [
     'private equity', 'small business acquisition', 'patient capital', 'business stewardship',
     'investment firm', 'independent sponsor', 'business partnership', 'operational excellence',
-    'sustainable growth', 'family business', 'middle market', 'buy and hold',
-    'long term investment', 'indus river group', 'business acquisition', 'small business investment'
-  ],
+  themeColor: '#08164F',
   authors: [{ name: 'Indus River Group' }],
   creator: 'Indus River Group',
   publisher: 'Indus River Group',
