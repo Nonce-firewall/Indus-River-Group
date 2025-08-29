@@ -1,7 +1,12 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import type React from 'react';
+import { Geist } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import { Inter } from 'next/font/google';
 
+const geist = Geist({ subsets: ['latin'], variable: "--font-geist" });
+const manrope = Manrope({ subsets: ['latin'], variable: "--font-manrope" });
 const inter = Inter({ subsets: ['latin'], variable: "--font-inter" });
 
 export const metadata: Metadata = {
@@ -89,8 +94,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`${inter.variable} antialiased`}>
-      <body className={inter.className}>{children}</body>
+    <html lang='en' className={`${geist.variable} ${manrope.variable} ${inter.variable} antialiased`}>
+      <body className={geist.className}>{children}</body>
     </html>
   );
 }
