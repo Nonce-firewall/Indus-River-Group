@@ -20,13 +20,13 @@ export default function ValueProposition() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 hero-gradient text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-indus-blue mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
             Patient Stewardship, Not Extraction
           </h2>
-          <p className="text-lg sm:text-xl text-charcoal-grey max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed">
             We bring more than capital to the table. Our approach combines operational expertise, 
             flexible structures, and long-term thinking to create sustainable value for all stakeholders.
           </p>
@@ -38,15 +38,15 @@ export default function ValueProposition() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-lg p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 text-center card-hover"
+                className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 sm:p-8 hover:bg-opacity-20 transition-all duration-300 text-center card-hover"
               >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-cerulean bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                  <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white bg-cerulean rounded-full p-1" />
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-indus-blue mb-3 sm:mb-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                   {value.title}
                 </h3>
-                <p className="text-sm sm:text-base text-charcoal-grey leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-100 leading-relaxed">
                   {value.description}
                 </p>
               </div>
