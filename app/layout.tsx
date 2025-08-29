@@ -29,22 +29,25 @@ export const metadata: Metadata = {
   publisher: 'Indus River Group',
   generator: 'Gaurav',
   category: 'business',
-  // UPDATE: Theme color updated to match site.webmanifest
-  [span_0](start_span)themeColor: "#08164F", //[span_0](end_span)
+  
+  // FIX: Changed themeColor to an object to resolve the build error.
+  themeColor: [
+    { color: '#08164F' }
+  ],
+
   viewport: "width=device-width, initial-scale=1",
   
   icons: {
-    // UPDATE: Icon paths updated to match site.webmanifest
     icon: [
-      [span_1](start_span){ url: '/images/favicon-original.png', sizes: '16x16', type: 'image/png' }, //[span_1](end_span)
-      [span_2](start_span){ url: '/images/favicon-original.png', sizes: '32x32', type: 'image/png' }, //[span_2](end_span)
-      [span_3](start_span){ url: '/images/favicon-original.png', sizes: '192x192', type: 'image/png' } //[span_3](end_span)
+      { url: '/images/favicon-original.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/favicon-original.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/favicon-original.png', sizes: '192x192', type: 'image/png' }
     ],
     apple: [
-      [span_4](start_span){ url: '/images/favicon-original.png', sizes: '180x180', type: 'image/png' } //[span_4](end_span)
+      { url: '/images/favicon-original.png', sizes: '180x180', type: 'image/png' }
     ],
     shortcut: [
-      [span_5](start_span){ url: '/images/favicon-original.png', type: 'image/png' } //[span_5](end_span)
+      { url: '/images/favicon-original.png', type: 'image/png' }
     ]
   },
   
@@ -71,10 +74,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        // UPDATE: Image path updated to match site.webmanifest
-        [span_6](start_span)url: '/images/favicon-original.png', //[span_6](end_span)
-        [span_7](start_span)width: 512, //[span_7](end_span)
-        [span_8](start_span)height: 512, //[span_8](end_span)
+        url: '/images/favicon-original.png',
+        width: 512,
+        height: 512,
         alt: 'Indus River Group - Private Investment Firm for Small Businesses',
         type: 'image/png'
       }
@@ -85,8 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Indus River Group - Private Investment Firm | Patient Capital',
     description: 'Indus River Group specializes in acquiring established small businesses ($1M-$5M EBITDA) with patient capital and operational expertise.',
-    // UPDATE: Image path updated to match site.webmanifest
-    [span_9](start_span)images: ['/images/favicon-original.png'], //[span_9](end_span)
+    images: ['/images/favicon-original.png'],
     creator: '@indusrivergroup',
   },
 
