@@ -32,59 +32,6 @@ export const metadata: Metadata = {
   creator: 'Indus River Group',
   publisher: 'Indus River Group',
   metadataBase: new URL('https://indusrivergroup.com'),
-  images: [
-      {
-        url: '/images/favicon-original.png',
-        width: 512,
-        height: 512,
-        alt: 'Indus River Group Logo',
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#0891b2",
-  manifest: "/manifest.json",
-  icons: {
-    icon: '/images/favicon-original.png',
-    apple: '/images/favicon-original.png',
-  },
-    generator: 'Gaurav'
-}
-  
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  icons: {
-    icon: [
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '16x16', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '32x32', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '48x48', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '96x96', type: 'image/png' },
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '192x192', type: 'image/png' }
-    ],
-    shortcut: [
-      { url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
-    ],
-    apple: [
-      { url: '/Indus%20River%20logo%20alone.png', sizes: '180x180', type: 'image/png' }
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/Indus%20River%20logo%20alone.png', color: '#08164F' },
-      { rel: 'icon', url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
-    ]
-  },
-  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Indus River Group - Private Investment Firm | Patient Capital for Small Businesses',
     description: 'Indus River Group is a private investment firm specializing in acquiring established small businesses ($1M-$5M EBITDA). We provide patient capital, operational expertise, and flexible deal structures.',
@@ -109,11 +56,45 @@ export const metadata: Metadata = {
     images: ['/Indus%20River%20logo%20alone.png'],
     creator: '@indusrivergroup',
   },
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#08164F",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '16x16', type: 'image/png' },
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '32x32', type: 'image/png' },
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '48x48', type: 'image/png' },
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '96x96', type: 'image/png' },
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '192x192', type: 'image/png' }
+    ],
+    shortcut: [
+      { url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/Indus%20River%20logo%20alone.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/Indus%20River%20logo%20alone.png', color: '#08164F' },
+      { rel: 'icon', url: '/Indus%20River%20logo%20alone.png', type: 'image/png' }
+    ]
+  },
   alternates: {
     canonical: 'https://indusrivergroup.com',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   category: 'business'
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
