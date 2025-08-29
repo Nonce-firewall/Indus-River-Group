@@ -17,6 +17,7 @@ export default function Footer() {
                   className="h-10 w-10 sm:h-12 sm:w-12 mr-3 sm:mr-4" 
                 />
                 <span className="text-lg sm:text-xl text-white leading-tight" style={{fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+                <span className="text-lg sm:text-xl text-white leading-tight font-black">
                   INDUS RIVER
                 </span>
               </div>

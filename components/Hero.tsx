@@ -20,7 +20,7 @@ export default function Hero() {
                 alt="Indus River Group" 
                 className="h-12 w-12 sm:h-20 sm:w-20 mr-3 sm:mr-5" 
               />
-              <span className="text-lg sm:text-2xl lg:text-3xl leading-tight" style={{color: '#FFFFFF', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-lg sm:text-2xl lg:text-3xl leading-tight text-white font-black">
                 INDUS RIVER GROUP
               </span>
             </div>

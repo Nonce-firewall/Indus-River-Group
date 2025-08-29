@@ -43,7 +43,7 @@ export default function Header() {
                 alt="Indus River Group" 
                 className="h-12 w-12 sm:h-16 sm:w-16 mr-2 sm:mr-4" 
               />
-              <span className="text-lg sm:text-2xl leading-tight" style={{color: '#08164F', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: '900'}}>
+              <span className="text-lg sm:text-2xl leading-tight text-indus-blue font-black">
                 INDUS RIVER
               </span>
             </div>
